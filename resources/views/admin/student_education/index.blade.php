@@ -84,7 +84,7 @@
                                 <td class="px-10 py-2 text-center">
                                     <div class="flex justify-center gap-2">
                                         <!-- Tautan untuk Edit -->
-                                        <a href="{{ route('admin.student_education.edit', $education->student_id) }}" 
+                                        <a href="{{ route('admin.student_education.edit', $education->id) }}" 
                                         class="bg-blue-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">
                                             Edit
                                         </a>

@@ -66,16 +66,32 @@ class StudentEducationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $education = StudentEducation::findOrFail($id); // Ambil data pendidikan berdasarkan ID
+        $students = Student::all(); // Ambil semua data siswa untuk dropdown
+        return view('admin.student_education.edit', compact('education', 'students'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'education_level' => 'required|string|max:255',
+            'class' => 'required|string|max:255',
+            'entry_year' => 'required|digits:4',
+            'graduation_year' => 'nullable|digits:4',
+            'graduation_status' => 'required|in:Lulus,Tidak Lulus,Belum Lulus',
+        ]);
+
+        $education = StudentEducation::findOrFail($id);
+        $education->update($validatedData);
+
+        return redirect()->route('admin.student_education.index')->with('success', 'Data Berhasil Diupdate!');
     }
+
 
     /**
      * Remove the specified resource from storage.

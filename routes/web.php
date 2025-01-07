@@ -31,5 +31,8 @@ Route::prefix('admin')->group(function () {
         //route resource pendidikan santri
         Route::resource('/student_education', StudentEducationController::class,['as' => 'admin']);
 
+        //route resource hafalan santri
+        Route::resource('/student_memorization', StudentMemorizationController::class,['as' => 'admin']);
+
     });
 });
