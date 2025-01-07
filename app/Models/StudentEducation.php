@@ -9,6 +9,8 @@ class StudentEducation extends Model
 {
     use HasFactory;
 
+    protected $table = 'student_educations';
+
     protected $fillable = [
         'student_id',
         'education_level',
@@ -21,7 +23,7 @@ class StudentEducation extends Model
     // Relasi Many-to-1 ke Student
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Student::class, 'student_id', 'id');
     }
 }
 

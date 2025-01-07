@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('class'); // e.g., 7A, 10B
             $table->year('entry_year');
             $table->year('graduation_year')->nullable();
-            $table->enum('graduation_status', ['Graduated', 'Not Graduated'])->nullable();
+            $table->enum('graduation_status', ['Lulus', 'Tidak Lulus', 'Belum Lulus'])->nullable();
             $table->timestamps(); // created_at & updated_at
         });
         

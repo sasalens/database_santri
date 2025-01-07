@@ -43,6 +43,9 @@
                                 <span class="text-white">Nama Santri</span>
                             </th>
                             <th class="px-10 py-4 text-left">
+                                <span class="text-white">Hubungan</span>
+                            </th>
+                            <th class="px-10 py-4 text-left">
                                 <span class="text-white">Nomor Telepon</span>
                             </th>
                             <th class="px-10 py-4">
@@ -70,6 +73,9 @@
                                     @else
                                         N/A
                                     @endif
+                                </td>
+                                <td class="px-10 py-2">
+                                    {{ $guardian->guardian_relationship }}
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $guardian->guardian_phone }}

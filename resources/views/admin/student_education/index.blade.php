@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Data Santri - Admin'])
+@extends('layouts.app', ['title' => 'Data Pendidikan Santri - Admin'])
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
@@ -6,7 +6,7 @@
 
         <div class="flex items-center">
             <button class="text-white bg-gray-600 px-4 py-2 shadow-sm rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
-                <a href="{{ route('admin.students.create') }}" class="flex items-center">
+                <a href="{{ route('admin.student_education.create') }}" class="flex items-center">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-table-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5" /><path d="M3 10h18" /><path d="M10 3v18" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
                     <span class="mx-3">Tambah</span>
                 </a>
@@ -36,17 +36,20 @@
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">No</span>
                             </th>
-                            <th class="pr-10 py-4 text-left">
-                                <span class="text-white">Nama Lengkap</span>
-                            </th>
+                            <!-- <th class="pr-10 py-4 text-left">
+                                <span class="text-white">ID</span>
+                            </th> -->
                             <th class="px-10 py-4 text-left">
-                                <span class="text-white">Nama Pondok</span>
+                                <span class="text-white">Nama Santri</span>
                             </th>
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Kelas</span>
                             </th>
+                            <!-- <th class="px-10 py-4 text-left">
+                                <span class="text-white">Tahun Masuk</span>
+                            </th> -->
                             <th class="px-10 py-4 text-left">
-                                <span class="text-white">Jenis Kelamin</span>
+                                <span class="text-white">Status</span>
                             </th>
                             <th class="px-10 py-4">
                                 <span class="text-white">Action</span>
@@ -54,33 +57,47 @@
                         </tr>
                     </thead>
                     <tbody class="bg-gray-200">
-                        @forelse($students as $student)
+                        @forelse($educations as $education)
                             <tr class="border bg-white">
         
                                 <td class="px-10 py-2">
                                     {{ $loop->iteration }}
                                 </td>
-                                <td class="pr-10 py-2">
-                                    {{ $student->full_name }}
+                                <!-- <td class="pr-10 py-2">
+                                    {{ $education->student_id }}
+                                </td> -->
+                                <td class="px-10 py-2">
+                                    {{ $education->student->full_name ?? 'Santri tidak ditemukan' }}
                                 </td>
                                 <td class="px-10 py-2">
-                                    {{ $student->nickname }}
+                                    {{ $education->class }}
+                                    <span>-</span>
+                                    <span>{{ $education->education_level }}</span>
                                 </td>
-                                @foreach ($students as $student)
-                                <td class="px-10 py-2">{{ $student->educations->first()?->class ?? 'Belum Ada Data' }}
-                                    <span>{{ $student->educations->first()?->education_level }}</span>
-                                </td>
-                                @endforeach
+                                <!-- <td class="px-10 py-2">
+                                    {{ $education->entry_year }}
+                                </td> -->
                                 <td class="px-10 py-2">
-                                    {{ $student->gender }}
+                                    {{ $education->graduation_status }}
                                 </td>
+
                                 <td class="px-10 py-2 text-center">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('admin.students.show', $student->id) }}" class="bg-yellow-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Detail</a>
-                                        <a href="{{ route('admin.students.edit', $student->id) }}" class="bg-blue-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Edit</a>
-                                        <button onClick="destroy(this.id)" id="{{ $student->id }}" class="bg-red-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Hapus</button>
+                                        <!-- Tautan untuk Edit -->
+                                        <a href="{{ route('admin.student_education.edit', $education->student_id) }}" 
+                                        class="bg-blue-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">
+                                            Edit
+                                        </a>
+                                        
+                                        <!-- Tombol untuk Hapus -->
+                                        <button onClick="destroy(this.id)" 
+                                                id="{{ $education->id }}" 
+                                                class="bg-red-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">
+                                            Hapus
+                                        </button>
                                     </div>
                                 </td>
+
 
                             </tr>
                         @empty
@@ -114,7 +131,7 @@
             if (result.isConfirmed) {
                 // AJAX DELETE request
                 $.ajax({
-                    url: `/admin/students/${id}`, 
+                    url: `/admin/student_education/${id}`, 
                     type: 'DELETE',
                     data: {
                         "id": id,

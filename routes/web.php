@@ -25,8 +25,11 @@ Route::prefix('admin')->group(function () {
         //route resource santri
         Route::resource('/students', StudentController::class,['as' => 'admin']);
 
-        //route resource santri
+        //route resource wali santri
         Route::resource('/student_guardian', StudentGuardianController::class,['as' => 'admin']);
+
+        //route resource pendidikan santri
+        Route::resource('/student_education', StudentEducationController::class,['as' => 'admin']);
 
     });
 });

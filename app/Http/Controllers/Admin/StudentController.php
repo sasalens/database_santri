@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\StudentGuardian;
+use App\Models\StudentEducation;
 
 class StudentController extends Controller
 {
@@ -17,7 +18,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with('guardian')->get();
+        $students = Student::with('guardian', 'educations')->get();
         return view('admin.students.index', compact('students'));
     }
 
@@ -184,17 +185,11 @@ class StudentController extends Controller
         }
 
         // Hapus data santri
-        $student->delete();
+        $isDeleted = $student->delete();
 
-        if($student){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
-        }
+        return response()->json([
+            'status' => $isDeleted ? 'success' : 'error',
+        ]);
     }
 
 
