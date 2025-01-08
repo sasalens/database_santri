@@ -5,7 +5,7 @@
     <div class="container mx-auto px-6 py-8">
         <div class="p-6 bg-white rounded-md shadow-md">
             <div class="flex items-center justify-between">
-                <h2 class="text-2xl font-semibold text-gray-700">TAMBAH DATA WALI SANTRI</h2>
+                <h2 class="text-3xl font-bold text-gray-700">Tambah Data Wali Santri</h2>
             </div>
             <hr class="mt-4">
 
@@ -19,7 +19,7 @@
                         <input type="text" 
                                name="father_name" 
                                value="{{ old('father_name') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Nama Ayah" 
                                required minlength="3">
                         @error('father_name')
@@ -33,7 +33,7 @@
                         <input type="text" 
                                name="father_occupation" 
                                value="{{ old('father_occupation') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Pekerjaan Ayah">
                         @error('father_occupation')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -46,7 +46,7 @@
                         <input type="text" 
                                name="father_phone" 
                                value="{{ old('father_phone') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="No Telepon Ayah">
                         @error('father_phone')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -59,7 +59,7 @@
                         <input type="text" 
                                name="mother_name" 
                                value="{{ old('mother_name') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Nama Ibu">
                         @error('mother_name')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -72,7 +72,7 @@
                         <input type="text" 
                                name="mother_occupation" 
                                value="{{ old('mother_occupation') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Pekerjaan Ibu">
                         @error('mother_occupation')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -85,7 +85,7 @@
                         <input type="text" 
                                name="mother_phone" 
                                value="{{ old('mother_phone') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="No Telepon Ibu">
                         @error('mother_phone')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -98,7 +98,7 @@
                         <input type="text" 
                                name="guardian_name" 
                                value="{{ old('guardian_name') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Nama Wali">
                         @error('guardian_name')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -129,7 +129,7 @@
                         <input type="text" 
                                name="guardian_phone" 
                                value="{{ old('guardian_phone') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="No Telepon Wali">
                         @error('guardian_phone')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -160,8 +160,8 @@
                         <label for="address" class="text-gray-700">Alamat Wali</label>
                         <textarea name="address" 
                                   id="address" 
-                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
-                                  placeholder="Alamat Wali" required>{{ old('address') }}</textarea>
+                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                                  placeholder="Alamat Lengkap Wali" required>{{ old('address') }}</textarea>
                         @error('address')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -197,12 +197,13 @@
 </script>
 
 <style>
-    /* Tambahkan padding dan margin pada kontainer */
+    /* Style untuk Select2 multiple select */
     .select2-container--default .select2-selection--multiple {
         background-color: #f9fafb; /* Warna latar belakang */
         border: 1px solid #4C585B; /* Warna border */
-        border-radius: 0.375rem; /* Border radius agar membulat */
+        border-radius: 0.375rem; /* Membulatkan sudut */
         padding: 0.5rem; /* Padding dalam */
+        height: auto; /* Sesuaikan tinggi */
         transition: border-color 0.2s ease-in-out;
     }
 
@@ -212,7 +213,21 @@
         outline: none; /* Hilangkan outline default */
     }
 
-    /* Style untuk tag yang dipilih */
+    /* Placeholder di dropdown */
+    .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+        color: #6b7280; /* Warna placeholder */
+        font-style: italic !important; /* Gaya miring untuk placeholder */
+    }
+
+
+    /* Teks yang dipilih di dropdown */
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+        color: #374151; /* Warna teks */
+        font-size: 1rem; /* Ukuran font */
+        font-weight: 400; /* Ketebalan font */
+    }
+
+    /* Style untuk tag yang dipilih (hanya jika multiple) */
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
         background-color: #3b82f6; /* Warna tag */
         color: #ffffff; /* Warna teks dalam tag */
@@ -233,6 +248,26 @@
     .select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
         background-color: #2563eb; /* Warna lebih gelap saat hover */
     }
+
+    /* Style dropdown */
+    .select2-container--default .select2-dropdown {
+        border-radius: 0.375rem; /* Membulatkan sudut */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Bayangan */
+    }
+
+    /* Style untuk opsi di dropdown */
+    .select2-container--default .select2-results__option {
+        padding: 0.5rem; /* Spasi dalam */
+        font-size: 0.875rem; /* Ukuran font */
+    }
+
+    /* Hover efek pada opsi */
+    .select2-container--default .select2-results__option--highlighted {
+        background-color: #3b82f6; /* Warna latar saat hover */
+        color: #ffffff; /* Warna teks saat hover */
+    }
+
 </style>
+
 
 @endsection

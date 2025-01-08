@@ -9,6 +9,8 @@ class StudentMemorization extends Model
 {
     use HasFactory;
 
+    protected $table = 'student_memorizations';
+
     protected $fillable = [
         'student_id',
         'total_juz',

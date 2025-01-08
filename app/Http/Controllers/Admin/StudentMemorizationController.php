@@ -23,7 +23,8 @@ class StudentMemorizationController extends Controller
      */
     public function create()
     {
-        //
+        $students = Student::all();
+        return view('admin.student_memorization.create', compact('students'));
     }
 
     /**
@@ -31,7 +32,15 @@ class StudentMemorizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'total_juz' => 'required|integer|min:0|max:30',
+            'last_updated' => 'nullable|date',
+        ]);
+
+        StudentMemorization::create($request->all());
+
+        return redirect()->route('admin.student_memorization.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
@@ -47,7 +56,10 @@ class StudentMemorizationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $memorization =  StudentMemorization::findOrFail($id);
+        $students = Student::all();
+
+        return view('admin.student_memorization.edit', compact('memorization', 'students'));
     }
 
     /**
@@ -55,7 +67,21 @@ class StudentMemorizationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'total_juz' => 'required|integer|min:0|max:30',
+            'last_updated' => 'nullable|date',
+        ]);
+
+        $memorization = StudentMemorization::findOrFail($id);
+
+        $memorization->update([
+            'student_id' => $request['student_id'],
+            'total_juz' => $request['total_juz'],
+            'last_updated' => $request['last_updated'],
+        ]);
+
+        return redirect()->route('admin.student_memorization.index')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -63,6 +89,12 @@ class StudentMemorizationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $memorization = StudentMemorization::findOrFail($id);
+
+        $isDeleted = $memorization->delete();
+
+        return response()->json([
+            'status' => $isDeleted ? 'success' : 'error',
+        ]);
     }
 }

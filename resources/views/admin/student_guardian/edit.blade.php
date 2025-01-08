@@ -193,7 +193,7 @@
     $(document).ready(function() {
         // Inisialisasi Select2
         $('#student_id').select2({
-            placeholder: "Pilih Wali Santri",
+            placeholder: "Pilih Santri",
             allowClear: true,
             width: '100%' // Agar dropdown menyesuaikan dengan lebar elemen
         });

@@ -70,9 +70,7 @@
                                     {{ $education->student->full_name ?? 'Santri tidak ditemukan' }}
                                 </td>
                                 <td class="px-10 py-2">
-                                    {{ $education->class }}
-                                    <span>-</span>
-                                    <span>{{ $education->education_level }}</span>
+                                    {{ $education->class }} - {{ $education->education_level }}
                                 </td>
                                 <!-- <td class="px-10 py-2">
                                     {{ $education->entry_year }}

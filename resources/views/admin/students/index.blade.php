@@ -66,12 +66,15 @@
                                 <td class="px-10 py-2">
                                     {{ $student->nickname }}
                                 </td>
-                                @foreach ($students as $student)
-                                <td class="px-10 py-2">{{ $student->educations->first()?->class ?? 'Belum Ada Data' }}
-                                    <span>-</span>
-                                    <span>{{ $student->educations->first()?->education_level }}</span>
+                                <td class="px-10 py-2">
+                                    @forelse ($student->educations as $education)
+                                        <div>
+                                            {{ $education->class ?? '_' }} - {{ $education->education_level ?? '_' }}
+                                        </div>
+                                    @empty
+                                        _
+                                    @endforelse
                                 </td>
-                                @endforeach
                                 <td class="px-10 py-2">
                                     {{ $student->gender }}
                                 </td>

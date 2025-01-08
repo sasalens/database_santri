@@ -6,7 +6,7 @@
 
         <div class="flex items-center">
             <button class="text-white bg-gray-600 px-4 py-2 shadow-sm rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
-                <a href="{{ route('admin.student_education.create') }}" class="flex items-center">
+                <a href="{{ route('admin.student_memorization.create') }}" class="flex items-center">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-table-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5" /><path d="M3 10h18" /><path d="M10 3v18" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
                     <span class="mx-3">Tambah</span>
                 </a>
@@ -62,6 +62,7 @@
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $memorization->total_juz }}
+                                    <span>- Juz</span>
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $memorization->last_updated }}
@@ -77,7 +78,7 @@
                                         
                                         <!-- Tombol untuk Hapus -->
                                         <button onClick="destroy(this.id)" 
-                                                id="{{ $education->id }}" 
+                                                id="{{ $memorization->id }}" 
                                                 class="bg-red-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">
                                             Hapus
                                         </button>

@@ -87,7 +87,15 @@ class StudentEducationController extends Controller
         ]);
 
         $education = StudentEducation::findOrFail($id);
-        $education->update($validatedData);
+
+        $education->update([
+            'student_id' => $request['student_id'],
+            'education_level' => $request['education_level'],
+            'class' => $request['class'],
+            'entry_year' => $request['entry_year'],
+            'graduation_year' => $request['graduation_year'],
+            'graduation_status' => $request['graduation_status'],
+        ]);
 
         return redirect()->route('admin.student_education.index')->with('success', 'Data Berhasil Diupdate!');
     }

@@ -18,7 +18,7 @@
                         <input type="text" 
                                name="full_name" 
                                value="{{ old('full_name') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Nama Lengkap" 
                                required minlength="3">
                         @error('full_name')
@@ -32,7 +32,7 @@
                         <input type="text" 
                                name="nickname" 
                                value="{{ old('nickname') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Nama Pondok">
                         @error('nickname')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -76,7 +76,7 @@
                         <input type="text" 
                                name="birth_place" 
                                value="{{ old('birth_place') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
                                placeholder="Tempat Lahir">
                         @error('birth_place')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -88,8 +88,8 @@
                         <label for="address" class="text-gray-700">Alamat</label>
                         <textarea name="address" 
                                   id="address" 
-                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
-                                  placeholder="Alamat" required>{{ old('address') }}</textarea>
+                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                                  placeholder="Alamat Lengkap" required>{{ old('address') }}</textarea>
                         @error('address')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -101,8 +101,8 @@
                         <input type="text" 
                                name="national_id" 
                                value="{{ old('national_id') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
-                               placeholder="NIK" maxlength="16">
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               placeholder="Nomor NIK" maxlength="16">
                         @error('national_id')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -159,10 +159,10 @@
                                 type="file" 
                                 name="photo" 
                                 id="photo" 
-                                class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300"
+                                class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic"
                                 accept=".jpg,.jpeg,.png"
                             >
-                            <p class="text-sm text-gray-500 mt-2">Unggah foto, jika tidak ingin biarkan kosong.</p>
+                            <p class="text-sm italic text-gray-500 mt-2">Unggah foto, jika tidak ingin biarkan kosong.</p>
                             @error('photo')
                             <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
