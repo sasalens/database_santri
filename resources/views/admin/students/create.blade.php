@@ -18,7 +18,7 @@
                         <input type="text" 
                                name="full_name" 
                                value="{{ old('full_name') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Nama Lengkap" 
                                required minlength="3">
                         @error('full_name')
@@ -32,7 +32,7 @@
                         <input type="text" 
                                name="nickname" 
                                value="{{ old('nickname') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Nama Pondok">
                         @error('nickname')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -63,7 +63,7 @@
                         <input type="date" 
                                name="birth_date" 
                                value="{{ old('birth_date') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                required>
                         @error('birth_date')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -76,7 +76,7 @@
                         <input type="text" 
                                name="birth_place" 
                                value="{{ old('birth_place') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Tempat Lahir">
                         @error('birth_place')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -88,7 +88,7 @@
                         <label for="address" class="text-gray-700">Alamat</label>
                         <textarea name="address" 
                                   id="address" 
-                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                   placeholder="Alamat Lengkap" required>{{ old('address') }}</textarea>
                         @error('address')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -101,7 +101,7 @@
                         <input type="text" 
                                name="national_id" 
                                value="{{ old('national_id') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Nomor NIK" maxlength="16">
                         @error('national_id')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -123,11 +123,11 @@
                         <label for="status" class="text-gray-700">Status</label>
                         <select id="status" 
                                 name="status" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 italic-placeholder" 
                                 required>
                             <option value="" disabled selected>Pilih Status</option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Alumni">Alumni</option>
+                            <option value="Aktif" class="text-gray-700">Aktif</option>
+                            <option value="Alumni" class="text-gray-700">Alumni</option>
                         </select>
                         @error('status')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -159,7 +159,7 @@
                                 type="file" 
                                 name="photo" 
                                 id="photo" 
-                                class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic"
+                                class="w-full p-2 border rounded-md bg-gray-100 placeholder:italic"
                                 accept=".jpg,.jpeg,.png"
                             >
                             <p class="text-sm italic text-gray-500 mt-2">Unggah foto, jika tidak ingin biarkan kosong.</p>
@@ -175,11 +175,11 @@
                 <!-- Tombol Aksi -->
                 <div class="mt-8 flex space-x-4">
                     <button type="submit" 
-                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Simpan Data
                     </button>
                     <a href="{{ route('admin.students.index') }}" 
-                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300">
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>
@@ -213,5 +213,13 @@
         }
     });
 </script>
+
+<style>
+    /* Custom style untuk membuat teks pertama menjadi italic */
+    .italic-placeholder:invalid {
+        font-style: italic;
+        color: #6b7280;
+    }
+</style>
 
 @endsection

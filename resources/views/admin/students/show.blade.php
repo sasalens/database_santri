@@ -8,7 +8,7 @@
 
             <div>
                 <div class="p-6 bg-white rounded-md shadow-md">
-                    <h2 class="text-lg text-gray-700 font-semibold capitalize">DETAIL SANTRI</h2>
+                    <h2 class="text-lg text-gray-700 font-semibold">DETAIL SANTRI</h2>
                     <hr class="mt-4">
 
                     <div class="mt-4 mb-6">

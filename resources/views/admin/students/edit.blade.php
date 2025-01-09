@@ -19,7 +19,7 @@
                         <input type="text" 
                                name="full_name" 
                                value="{{ old('full_name', $student->full_name) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Nama Lengkap" 
                                required minlength="3">
                         @error('full_name')
@@ -33,7 +33,7 @@
                         <input type="text" 
                                name="nickname" 
                                value="{{ old('nickname', $student->nickname) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Nama Pondok">
                         @error('nickname')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -79,7 +79,7 @@
                         <input type="date" 
                                name="birth_date" 
                                value="{{ old('birth_date', $student->birth_date) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                required>
                         @error('birth_date')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -92,7 +92,7 @@
                         <input type="text" 
                                name="birth_place" 
                                value="{{ old('birth_place', $student->birth_place) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Tempat Lahir">
                         @error('birth_place')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -104,7 +104,7 @@
                         <label for="address" class="text-gray-700">Alamat</label>
                         <textarea name="address" 
                                   id="address" 
-                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                   placeholder="Alamat" required>{{ old('address', $student->address) }}</textarea>
                         @error('address')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -117,7 +117,7 @@
                         <input type="text" 
                                name="national_id" 
                                value="{{ old('national_id', $student->national_id) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="NIK" maxlength="16">
                         @error('national_id')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -139,7 +139,7 @@
                         <label for="status" class="text-gray-700">Status</label>
                         <select id="status" 
                                 name="status" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                 required>
                             <option value="" disabled {{ old('status', $student->status) === null ? 'selected' : '' }}>Pilih Status</option>
                             <option class="py-1" value="Aktif" {{ old('status', $student->status) === 'Aktif' ? 'selected' : '' }}>Aktif</option>
@@ -171,7 +171,7 @@
                                 type="file" 
                                 name="photo" 
                                 id="photo" 
-                                class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300"
+                                class="w-full p-2 border rounded-md bg-gray-100"
                                 accept=".jpg,.jpeg,.png"
                             >
                             <p class="text-sm italic text-gray-500 mt-2">Unggah foto baru jika ingin mengganti.</p>
@@ -188,12 +188,12 @@
                     <!-- Tombol Simpan Data -->
                     <button 
                         type="submit" 
-                        class="flex px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
+                        class="flex px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Update Data
                     </button>
                     <!-- Tombol Batal -->
                     <a href="{{ route('admin.students.index') }}" 
-                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300">
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>

@@ -18,7 +18,8 @@
                         <label for="student_id" class="text-gray-700 mb-2 block">Nama Santri</label>
                         <select id="student_id" 
                                 name="student_id" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 select2">
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 select2">
+                            <option value="" selected disabled>Pilih Santri</option>
                             @foreach ($students as $student)
                             <option value="{{ $student->id }}" 
                                     {{ old('student_id', $education->student_id ?? '') == $student->id ? 'selected' : '' }}>
@@ -37,7 +38,7 @@
                         <input type="number" 
                                name="total_juz" 
                                value="{{ old('total_juz') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Total Juz" 
                                required minlength="3">
                         @error('total_juz')
@@ -51,7 +52,7 @@
                         <input type="date" 
                                name="last_updated" 
                                value="{{ old('last_updated') }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="Tanggal">
                         @error('last_updated')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -63,11 +64,11 @@
                 <!-- Tombol Aksi -->
                 <div class="mt-8 flex space-x-4">
                     <button type="submit" 
-                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Simpan Data
                     </button>
                     <a href="{{ route('admin.student_memorization.index') }}" 
-                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300">
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>

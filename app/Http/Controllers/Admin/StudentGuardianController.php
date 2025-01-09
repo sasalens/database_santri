@@ -21,8 +21,8 @@ class StudentGuardianController extends Controller
     // create
     public function create()
     {
-        $students = Student::all(); // Ambil data santri
-        return view('admin.student_guardian.create', compact('students')); // Kirim data ke view
+        $students = Student::doesnthave('guardian')->get();
+        return view('admin.student_guardian.create', compact('students')); 
     }
 
 

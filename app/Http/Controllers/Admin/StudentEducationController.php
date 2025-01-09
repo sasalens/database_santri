@@ -23,7 +23,7 @@ class StudentEducationController extends Controller
      */
     public function create()
     {
-        $students = Student::all();
+        $students = Student::doesntHave('educations')->get();
         return view('admin.student_education.create', compact('students'));
     }
 
@@ -33,7 +33,7 @@ class StudentEducationController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required|exists:students,id',
+            'student_id' => 'required|exists:students,id|unique:student_educations,student_id',
             'education_level' => 'required|string|max:255',
             'class' => 'required|string|max:255',
             'entry_year' => 'required|digits:4',
@@ -46,7 +46,7 @@ class StudentEducationController extends Controller
             'education_level' => $validatedData['education_level'],
             'class' => $validatedData['class'],
             'entry_year' => $validatedData['entry_year'],
-            'graduation_year' => $validatedData['graduation_year'] ?: null,
+            'graduation_year' => $validatedData['graduation_year'],
             'graduation_status' => $validatedData['graduation_status'] 
         ]);
 
@@ -78,7 +78,7 @@ class StudentEducationController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required|exists:students,id',
+            'student_id' => 'required|exists:students,id|unique:student_educations,student_id,',
             'education_level' => 'required|string|max:255',
             'class' => 'required|string|max:255',
             'entry_year' => 'required|digits:4',

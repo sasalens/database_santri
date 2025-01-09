@@ -16,11 +16,10 @@
 
                     <!-- Nama Santri -->
                     <div>
-                        <label for="student_id" class="text-gray-700 mb-2 block">Nama Santri</label>
+                        <label for="student_id" class="text-gray-700 block">Nama Santri</label>
                         <select id="student_id" 
                                 name="student_id" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 select2" 
-                                multiple>
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 select2">
                             @foreach ($students as $student)
                             <option value="{{ $student->id }}" 
                                     {{ old('student_id', $memorization->student_id ?? '') == $student->id ? 'selected' : '' }}>
@@ -39,9 +38,8 @@
                         <input type="number" 
                                name="total_juz" 
                                value="{{ old('total_juz', $memorization->total_juz) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
-                               placeholder="Total Juz" 
-                               required minlength="3">
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
+                               placeholder="Total Juz">
                         @error('total_juz')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -53,7 +51,7 @@
                         <input type="date" 
                                name="last_updated" 
                                value="{{ old('last_updated', $memorization->last_updated) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="Tanggal">
                         @error('last_updated')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -65,11 +63,11 @@
                 <!-- Tombol Aksi -->
                 <div class="mt-8 flex space-x-4">
                     <button type="submit" 
-                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Simpan Data
                     </button>
                     <a href="{{ route('admin.student_memorization.index') }}" 
-                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300">
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>
@@ -80,53 +78,57 @@
     </div>
 </main>
 
-<script>
-    $(document).ready(function() {
-        // Inisialisasi Select2
-        $('#student_id').select2({
-            placeholder: "Pilih Wali Santri",
-            allowClear: true,
-            width: '100%' // Agar dropdown menyesuaikan dengan lebar elemen
-        });
-    });
-</script>
-
 <style>
-    /* Tambahkan padding dan margin pada kontainer */
-    .select2-container--default .select2-selection--multiple {
+    /* Style untuk Select2 single-select */
+    .select2-container--default .select2-selection--single {
         background-color: #f9fafb; /* Warna latar belakang */
         border: 1px solid #4C585B; /* Warna border */
-        border-radius: 0.375rem; /* Border radius agar membulat */
+        border-radius: 0.375rem; /* Membulatkan sudut */
         padding: 0.5rem; /* Padding dalam */
+        height: auto; /* Sesuaikan tinggi */
         transition: border-color 0.2s ease-in-out;
     }
 
     /* Saat elemen mendapatkan fokus */
-    .select2-container--default .select2-selection--multiple:focus {
+    .select2-container--default .select2-selection--single:focus {
         border-color: #3b82f6; /* Warna border saat aktif */
         outline: none; /* Hilangkan outline default */
     }
 
-    /* Style untuk tag yang dipilih */
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #3b82f6; /* Warna tag */
-        color: #ffffff; /* Warna teks dalam tag */
-        border: none; /* Hilangkan border */
-        border-radius: 0.25rem; /* Membulatkan sudut */
-        padding: 0.25rem 0.5rem; /* Spasi dalam */
-        margin: 0.125rem; /* Jarak antar tag */
-        font-size: 0.875rem; /* Ukuran font lebih kecil */
+    /* Placeholder di dropdown */
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+        color: #6b7280; /* Warna placeholder */
+        font-style: italic;
     }
 
-    /* Style untuk tombol hapus pada tag */
-    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-        color: #ffffff; /* Warna ikon hapus */
-        margin-left: 0.25rem; /* Jarak ikon ke teks */
+    /* Teks yang dipilih */
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #374151; /* Warna teks */
+        font-size: 1rem; /* Ukuran font */
+        font-weight: 400; /* Ketebalan font */
     }
 
-    /* Hover efek pada tag */
-    .select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
-        background-color: #2563eb; /* Warna lebih gelap saat hover */
+    /* Hover efek pada dropdown */
+    .select2-container--default .select2-selection--single:hover {
+        border-color: #2563eb; /* Warna border saat hover */
+    }
+
+    /* Style dropdown */
+    .select2-container--default .select2-dropdown {
+        border-radius: 0.375rem; /* Membulatkan sudut */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Bayangan */
+    }
+
+    /* Style untuk opsi di dropdown */
+    .select2-container--default .select2-results__option {
+        padding: 0.5rem; /* Spasi dalam */
+        font-size: 0.875rem; /* Ukuran font */
+    }
+
+    /* Hover efek pada opsi */
+    .select2-container--default .select2-results__option--highlighted {
+        background-color: #3b82f6; /* Warna latar saat hover */
+        color: #ffffff; /* Warna teks saat hover */
     }
 </style>
 

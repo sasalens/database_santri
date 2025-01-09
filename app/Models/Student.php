@@ -44,7 +44,7 @@ class Student extends Model
     // Relasi 1-to-Many ke pendidikan
     public function educations()
     {
-        return $this->hasMany(StudentEducation::class);
+        return $this->hasMany(StudentEducation::class, 'student_id');
     }
 
     // Relasi 1-to-1 ke hafalan

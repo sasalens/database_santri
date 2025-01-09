@@ -18,7 +18,7 @@
                         <label for="student_id" class="text-gray-700 mb-2 block">Nama Santri</label>
                         <select id="student_id" 
                                 name="student_id" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 select2">
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 select2">
                             @foreach ($students as $student)
                             <option value="{{ $student->id }}" 
                                     {{ old('student_id', $education->student_id ?? '') == $student->id ? 'selected' : '' }}>
@@ -36,7 +36,7 @@
                         <label for="education_level" class="text-gray-700">Jenjang Pendidikan</label>
                         <select name="education_level" 
                                 id="education_level" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300">
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100">
                             <option value="" disabled selected>Pilih Jenjang</option>
                             <option value="Ibtidaiyah" {{ old('education_level', $education->education_level ?? '') == 'Ibtidaiyah' ? 'selected' : '' }}>Ibtidaiyah</option>
                             <option value="Tsanawiyah" {{ old('education_level', $education->education_level ?? '') == 'Tsanawiyah' ? 'selected' : '' }}>Tsanawiyah</option>
@@ -53,7 +53,7 @@
                         <input type="text" 
                                name="class" 
                                value="{{ old('class', $education->class) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Kelas" 
                                required minlength="3">
                         @error('class')
@@ -67,7 +67,7 @@
                         <input type="number" 
                                name="entry_year" 
                                value="{{ old('entry_year', $education->entry_year) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Tahun Masuk" 
                                required minlength="3">
                         @error('entry_year')
@@ -81,7 +81,7 @@
                         <input type="number" 
                                name="graduation_year" 
                                value="{{ old('graduation_year', $education->graduation_year) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 placeholder:italic" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Tahun Lulus">
                         @error('graduation_year')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -93,7 +93,7 @@
                         <label for="graduation_status" class="text-gray-700">Status</label>
                         <select name="graduation_status" 
                                 id="graduation_status" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300">
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100">
                             <option value="" disabled selected>Pilih Status</option>
                             <option value="Lulus" {{ old('graduation_status', $education->graduation_status ?? '') == 'Lulus' ? 'selected' : '' }}>Lulus</option>
                             <option value="Belum Lulus" {{ old('graduation_status', $education->graduation_status ?? '') == 'Belum Lulus' ? 'selected' : '' }}>Belum Lulus</option>
@@ -109,11 +109,11 @@
                 <!-- Tombol Aksi -->
                 <div class="mt-8 flex space-x-4">
                     <button type="submit" 
-                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Simpan Data
                     </button>
                     <a href="{{ route('admin.student_education.index') }}" 
-                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300">
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>

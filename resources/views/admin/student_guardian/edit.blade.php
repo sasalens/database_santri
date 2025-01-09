@@ -19,9 +19,9 @@
                         <input type="text" 
                                name="father_name" 
                                value="{{ old('father_name', $student_guardian->father_name) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="Nama Ayah" 
-                               required minlength="3">
+                               required>
                         @error('father_name')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -33,7 +33,7 @@
                         <input type="text" 
                                name="father_occupation" 
                                value="{{ old('father_occupation', $student_guardian->father_occupation) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="Pekerjaan Ayah">
                         @error('father_occupation')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -46,7 +46,7 @@
                         <input type="text" 
                                name="father_phone" 
                                value="{{ old('father_phone', $student_guardian->father_phone) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="No Telepon Ayah">
                         @error('father_phone')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -59,9 +59,9 @@
                         <input type="text" 
                                name="mother_name" 
                                value="{{ old('mother_name', $student_guardian->mother_name) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="Nama Ibu" 
-                               required minlength="3">
+                               required>
                         @error('mother_name')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -73,7 +73,7 @@
                         <input type="text" 
                                name="mother_occupation" 
                                value="{{ old('mother_occupation', $student_guardian->mother_occupation) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="Pekerjaan Ibu">
                         @error('mother_occupation')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -86,7 +86,7 @@
                         <input type="text" 
                                name="mother_phone" 
                                value="{{ old('mother_phone', $student_guardian->mother_phone) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="No Telepon Ibu">
                         @error('mother_phone')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -99,9 +99,8 @@
                         <input type="text" 
                                name="guardian_name" 
                                value="{{ old('guardian_name', $student_guardian->guardian_name) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
-                               placeholder="Nama Wali" 
-                               required minlength="3">
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
+                               placeholder="Nama Wali">
                         @error('guardian_name')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -112,7 +111,7 @@
                         <label for="guardian_relationship" class="text-gray-700">Hubungan</label>
                         <select name="guardian_relationship" 
                                 id="guardian_relationship" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300">
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100">
                             <option value="" disabled selected>Pilih Hubungan</option>
                             <option value="Orang Tua" {{ old('guardian_relationship', $student_guardian->guardian_relationship ?? '') == 'Orang Tua' ? 'selected' : '' }}>Orang Tua</option>
                             <option value="Saudara" {{ old('guardian_relationship', $student_guardian->guardian_relationship ?? '') == 'Saudara' ? 'selected' : '' }}>Saudara</option>
@@ -131,7 +130,7 @@
                         <input type="text" 
                                name="guardian_phone" 
                                value="{{ old('guardian_phone', $student_guardian->guardian_phone) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                placeholder="No Telepon Wali">
                         @error('guardian_phone')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -141,7 +140,7 @@
                     <!-- Nama Santri -->
                     <div>
                         <label for="student_id" class="text-gray-700 my-2 block">Nama Santri</label>
-                        <select id="student_id" name="student_id[]" class="w-full mt-2 px-5 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300 select2" multiple>
+                        <select id="student_id" name="student_id[]" class="w-full mt-2 px-5 border rounded-md bg-gray-100 select2" multiple>
                             @foreach ($allStudents as $student)
                                 <option value="{{ $student->id }}" 
                                         {{ in_array($student->id, $student_guardian->students->pluck('id')->toArray()) ? 'selected' : '' }}>
@@ -160,7 +159,7 @@
                         <label for="address" class="text-gray-700">Alamat</label>
                         <textarea name="address" 
                                   id="address" 
-                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-blue-300" 
+                                  class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
                                   placeholder="Alamat" required>{{ old('address', $student_guardian->address) }}</textarea>
                         @error('address')
                         <span class="text-sm text-red-600">{{ $message }}</span>
@@ -173,12 +172,12 @@
                     <!-- Tombol Simpan Data -->
                     <button 
                         type="submit" 
-                        class="flex px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
+                        class="flex px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Update Data
                     </button>
                     <!-- Tombol Batal -->
                     <a href="{{ route('admin.student_guardian.index') }}" 
-                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300">
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>
