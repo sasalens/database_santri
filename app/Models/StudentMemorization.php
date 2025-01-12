@@ -20,6 +20,6 @@ class StudentMemorization extends Model
     // Relasi Many-to-1 ke Student
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Student::class, 'student_id', 'id');
     }
 }

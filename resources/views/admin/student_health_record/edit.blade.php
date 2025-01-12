@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Edit Data Hafalan Santri - Admin'])
+@extends('layouts.app', ['title' => 'Edit Data Pendidikan Santri - Admin'])
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
@@ -6,14 +6,13 @@
 
         <div class="p-6 bg-white rounded-md shadow-md">
             <div class="flex items-center gap-x-5">
-                <h2 class="text-3xl font-bold text-gray-700">Edit Data Hafalan Santri</h2>
+                <h2 class="text-3xl font-bold text-gray-700">Edit Data Pendidikan Santri</h2>
             </div>
             <hr class="mt-4">
-            <form action="{{ route('admin.student_memorization.update', $memorization->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.student_health_record.update', $healthrecord->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-
                     <!-- Nama Santri -->
                     <div>
                         <label for="student_id" class="text-gray-700 mb-2 block">Nama Santri</label>
@@ -22,7 +21,7 @@
                                 class="w-full mt-2 px-3 border rounded-md bg-gray-100 select2">
                             @foreach ($students as $student)
                             <option value="{{ $student->id }}" 
-                                    {{ old('student_id', $memorization->student_id ?? '') == $student->id ? 'selected' : '' }}>
+                                    {{ old('student_id', $healthrecord->student_id ?? '') == $student->id ? 'selected' : '' }}>
                                 {{ $student->full_name }}
                             </option>
                             @endforeach
@@ -32,28 +31,62 @@
                         @enderror
                     </div>
 
-                    <!-- Total Juz -->
+                    <!-- Golongan Darah -->
                     <div>
-                        <label for="total_juz" class="text-gray-700">Total Juz</label>
-                        <input type="number" 
-                               name="total_juz" 
-                               value="{{ old('total_juz', $memorization->total_juz) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
-                               placeholder="Total Juz">
-                        @error('total_juz')
+                        <label for="blood_type" class="text-gray-700">Golongan Darah</label>
+                        <select name="blood_type" 
+                                id="blood_type" 
+                                class="w-full mt-2 px-3 border rounded-md bg-gray-100">
+                            <option value="" disabled selected>Pilih Golongan Darah</option>
+                            <option value="A+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'A+' ? 'selected' : '' }}>A+</option>
+                            <option value="B+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'B+' ? 'selected' : '' }}>B+</option>
+                            <option value="AB+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'AB+' ? 'selected' : '' }}>AB+</option>
+                            <option value="O+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'O+' ? 'selected' : '' }}>O+</option>
+                            <option value="A-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'A-' ? 'selected' : '' }}>A-</option>
+                            <option value="B-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'B-' ? 'selected' : '' }}>B-</option>
+                            <option value="AB-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'AB-' ? 'selected' : '' }}>AB-</option>
+                            <option value="O-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'O-' ? 'selected' : '' }}>O-</option>
+                        </select>
+                        @error('blood_type')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <!-- Tanggal -->
+                    <!-- Riwayat Kesehatan -->
                     <div>
-                        <label for="last_updated" class="text-gray-700">Tanggal</label>
-                        <input type="date" 
-                               name="last_updated" 
-                               value="{{ old('last_updated', $memorization->last_updated) }}" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
-                               placeholder="Tanggal">
-                        @error('last_updated')
+                        <label for="medical_history" class="text-gray-700">Riwayat Kesehatan</label>
+                        <input type="text" 
+                               name="medical_history" 
+                               value="{{ old('medical_history', $healthrecord->medical_history) }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="Riwayat Kesehatan">
+                        @error('medical_history')
+                        <span class="text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Alergi -->
+                    <div>
+                        <label for="allergies" class="text-gray-700">Alergi</label>
+                        <input type="text" 
+                               name="allergies" 
+                               value="{{ old('allergies', $healthrecord->allergies) }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="Alergi">
+                        @error('allergies')
+                        <span class="text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Kontak Darurat -->
+                    <div>
+                        <label for="emergency_contact" class="text-gray-700">Kontak Darurat</label>
+                        <input type="text" 
+                               name="emergency_contact" 
+                               value="{{ old('emergency_contact', $healthrecord->emergency_contact) }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="Kontak Darurat">
+                        @error('emergency_contact')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
@@ -66,7 +99,7 @@
                             class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Simpan Data
                     </button>
-                    <a href="{{ route('admin.student_memorization.index') }}" 
+                    <a href="{{ route('admin.student_health_record.index') }}" 
                        class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>

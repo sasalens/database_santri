@@ -33,7 +33,7 @@ class StudentMemorizationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'student_id' => 'required|exists:students,id|unique:student_memorizations,student_id',
+            'student_id' => 'required|exists:students,id|unique:student_memorizations,id',
             'total_juz' => 'required|integer|min:0|max:30',
             'last_updated' => 'nullable|date',
         ]);
@@ -68,7 +68,7 @@ class StudentMemorizationController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'student_id' => 'required|exists:students,id|unique:student_memorizations,student_id',
+            'student_id' => 'required|exists:students,id|unique:student_memorizations,student_id,' . $id,
             'total_juz' => 'required|integer|min:0|max:30',
             'last_updated' => 'nullable|date',
         ]);

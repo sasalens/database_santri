@@ -9,6 +9,8 @@ class StudentHealthRecord extends Model
 {
     use HasFactory;
 
+    protected $table = 'student_health_records';
+
     protected $fillable = [
         'student_id',
         'blood_type',
@@ -20,7 +22,7 @@ class StudentHealthRecord extends Model
     // Relasi Many-to-1 ke Student
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Student::class, 'student_id', 'id');
     }
 }
 

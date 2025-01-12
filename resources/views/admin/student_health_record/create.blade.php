@@ -1,27 +1,28 @@
-@extends('layouts.app', ['title' => 'Edit Data Pendidikan Santri - Admin'])
+@extends('layouts.app', ['title' => 'Tambah Data Kesehatan Santri - Admin'])
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
     <div class="container mx-auto px-6 py-8">
-
         <div class="p-6 bg-white rounded-md shadow-md">
-            <div class="flex items-center gap-x-5">
-                <h2 class="text-3xl font-bold text-gray-700">Edit Data Pendidikan Santri</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="text-3xl font-bold text-gray-700">Tambah Data Kesehatan Santri</h2>
             </div>
             <hr class="mt-4">
-            <form action="{{ route('admin.student_education.update', $education->id) }}" method="POST" enctype="multipart/form-data">
+
+            <form action="{{ route('admin.student_health_record.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+
                     <!-- Nama Santri -->
                     <div>
                         <label for="student_id" class="text-gray-700 mb-2 block">Nama Santri</label>
                         <select id="student_id" 
                                 name="student_id" 
                                 class="w-full mt-2 px-3 border rounded-md bg-gray-100 select2">
+                            <option value="" selected disabled>Pilih Santri</option>
                             @foreach ($students as $student)
                             <option value="{{ $student->id }}" 
-                                    {{ old('student_id', $education->student_id ?? '') == $student->id ? 'selected' : '' }}>
+                                    {{ old('student_id', $healthrecord->student_id ?? '') == $student->id ? 'selected' : '' }}>
                                 {{ $student->full_name }}
                             </option>
                             @endforeach
@@ -31,75 +32,62 @@
                         @enderror
                     </div>
 
-                    <!-- Jenjang Pendidikan -->
+                    <!-- Golongan Darah -->
                     <div>
-                        <label for="education_level" class="text-gray-700">Jenjang Pendidikan</label>
-                        <select name="education_level" 
-                                id="education_level" 
+                        <label for="blood_type" class="text-gray-700">Golongan Darah</label>
+                        <select name="blood_type" 
+                                id="blood_type" 
                                 class="w-full mt-2 px-3 border rounded-md bg-gray-100">
-                            <option value="" disabled selected>Pilih Jenjang</option>
-                            <option value="Ibtidaiyah" {{ old('education_level', $education->education_level ?? '') == 'Ibtidaiyah' ? 'selected' : '' }}>Ibtidaiyah</option>
-                            <option value="Tsanawiyah" {{ old('education_level', $education->education_level ?? '') == 'Tsanawiyah' ? 'selected' : '' }}>Tsanawiyah</option>
-                            <option value="Aliyah" {{ old('education_level', $education->education_level ?? '') == 'Aliyah' ? 'selected' : '' }}>Aliyah</option>
+                            <option value="" disabled selected>Pilih Golongan Darah</option>
+                            <option value="A+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'A+' ? 'selected' : '' }}>A+</option>
+                            <option value="B+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'B+' ? 'selected' : '' }}>B+</option>
+                            <option value="AB+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'AB+' ? 'selected' : '' }}>AB+</option>
+                            <option value="O+" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'O+' ? 'selected' : '' }}>O+</option>
+                            <option value="A-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'A-' ? 'selected' : '' }}>A-</option>
+                            <option value="B-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'B-' ? 'selected' : '' }}>B-</option>
+                            <option value="AB-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'AB-' ? 'selected' : '' }}>AB-</option>
+                            <option value="O-" {{ old('blood_type', $healthrecord->blood_type ?? '') == 'O-' ? 'selected' : '' }}>O-</option>
                         </select>
-                        @error('education_level')
+                        @error('blood_type')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <!-- Kelas -->
+                    <!-- Riwayat Kesehatan -->
                     <div>
-                        <label for="class" class="text-gray-700">Kelas</label>
+                        <label for="medical_history" class="text-gray-700">Riwayat Kesehatan</label>
                         <input type="text" 
-                               name="class" 
-                               value="{{ old('class', $education->class) }}" 
+                               name="medical_history" 
+                               value="{{ old('medical_history') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Kelas" 
-                               required maxlength="3">
-                        @error('class')
+                               placeholder="Riwayat Kesehatan">
+                        @error('medical_history')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <!-- Tahun masuk -->
+                    <!-- Alergi -->
                     <div>
-                        <label for="entry_year" class="text-gray-700">Tahun Masuk</label>
-                        <input type="number" 
-                               name="entry_year" 
-                               value="{{ old('entry_year', $education->entry_year) }}" 
+                        <label for="allergies" class="text-gray-700">Alergi</label>
+                        <input type="text" 
+                               name="allergies" 
+                               value="{{ old('allergies') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Tahun Masuk" 
-                               required length="4">
-                        @error('entry_year')
+                               placeholder="Alergi">
+                        @error('allergies')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <!-- Tahun Lulus -->
+                    <!-- Kontak Darurat -->
                     <div>
-                        <label for="graduation_year" class="text-gray-700">Tahun Lulus</label>
-                        <input type="number" 
-                               name="graduation_year" 
-                               value="{{ old('graduation_year', $education->graduation_year) }}" 
+                        <label for="emergency_contact" class="text-gray-700">Kontak Darurat</label>
+                        <input type="text" 
+                               name="emergency_contact" 
+                               value="{{ old('emergency_contact') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Tahun Lulus">
-                        @error('graduation_year')
-                        <span class="text-sm text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <!-- Status -->
-                    <div>
-                        <label for="graduation_status" class="text-gray-700">Status</label>
-                        <select name="graduation_status" 
-                                id="graduation_status" 
-                                class="w-full mt-2 px-3 border rounded-md bg-gray-100">
-                            <option value="" disabled selected>Pilih Status</option>
-                            <option value="Lulus" {{ old('graduation_status', $education->graduation_status ?? '') == 'Lulus' ? 'selected' : '' }}>Lulus</option>
-                            <option value="Belum Lulus" {{ old('graduation_status', $education->graduation_status ?? '') == 'Belum Lulus' ? 'selected' : '' }}>Belum Lulus</option>
-                            <option value="Tidak Lulus" {{ old('graduation_status', $education->graduation_status ?? '') == 'Tidak Lulus' ? 'selected' : '' }}>Tidak Lulus</option>
-                        </select>
-                        @error('graduation_status')
+                               placeholder="Kontak Darurat">
+                        @error('emergency_contact')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
@@ -112,15 +100,14 @@
                             class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                         Simpan Data
                     </button>
-                    <a href="{{ route('admin.student_education.index') }}" 
+                    <a href="{{ route('admin.student_health_record.index') }}" 
                        class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                         Batal
                     </a>
                 </div>
-
+                
             </form>
         </div>
-        
     </div>
 </main>
 
@@ -128,11 +115,31 @@
     $(document).ready(function() {
         // Inisialisasi Select2
         $('#student_id').select2({
-            placeholder: "Pilih Wali Santri",
+            placeholder: "Pilih Santri",
             allowClear: true,
             width: '100%' // Agar dropdown menyesuaikan dengan lebar elemen
         });
     });
+
+    // Ambil kedua elemen select
+    const bloodType = document.getElementById('blood_type');
+
+    // Function untuk memperbarui gaya
+    function updateSelectStyle(selectElement) {
+        if (selectElement.value === "") {
+            selectElement.style.fontStyle = 'italic';
+            selectElement.style.color = '#6b7280'; // Warna abu-abu
+        } else {
+            selectElement.style.fontStyle = 'normal';
+            selectElement.style.color = '#374151'; // Warna teks default
+        }
+    }
+
+    // Terapkan gaya awal ke kedua elemen
+    updateSelectStyle(bloodType);
+
+    // Tambahkan event listener untuk perubahan pada kedua elemen
+    bloodType.addEventListener('change', () => updateSelectStyle(bloodType));
 </script>
 
 <style>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\StudentHealthRecord;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,9 @@ Route::prefix('admin')->group(function () {
 
         //route resource hafalan santri
         Route::resource('/student_memorization', StudentMemorizationController::class,['as' => 'admin']);
+
+        //route resource kesehatan santri
+        Route::resource('/student_health_record', StudentHealthRecordController::class,['as' => 'admin']);
 
     });
 });
