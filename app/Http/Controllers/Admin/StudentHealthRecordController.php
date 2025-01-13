@@ -77,9 +77,9 @@ class StudentHealthRecordController extends Controller
             'emergency_contact' => 'nullable|string|max:255',
         ]);
 
-        $memorization = StudentHealthRecord::findOrFail($id);
+        $healthrecord = StudentHealthRecord::findOrFail($id);
 
-        $memorization->update([
+        $healthrecord->update([
             'student_id' => $request['student_id'],
             'blood_type' => $request['blood_type'],
             'medical_history' => $request['medical_history'],
@@ -95,9 +95,9 @@ class StudentHealthRecordController extends Controller
      */
     public function destroy(string $id)
     {
-        $memorization = StudentHealthRecord::findOrFail($id);
+        $healthrecord = StudentHealthRecord::findOrFail($id);
 
-        $isDeleted = $memorization->delete();
+        $isDeleted = $healthrecord->delete();
 
         return response()->json([
             'status' => $isDeleted ? 'success' : 'error',
