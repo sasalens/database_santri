@@ -33,7 +33,7 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">No</span>
                             </th>
                             <th class="pr-10 py-4 text-left">
@@ -45,7 +45,7 @@
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Hubungan</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Nomor Telepon</span>
                             </th>
                             <th class="px-10 py-4">
@@ -57,7 +57,7 @@
                         @forelse($guardians as $guardian)
                             <tr class="border bg-white">
         
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="pr-10 py-2">
@@ -77,19 +77,18 @@
                                 <td class="px-10 py-2">
                                     {{ $guardian->guardian_relationship }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $guardian->guardian_phone }}
                                 </td>
 
                                 <td class="px-10 py-2 text-center">
                                     <div class="flex justify-center gap-2">
-                                        <!-- Tautan untuk Edit -->
+
                                         <a href="{{ route('admin.student_guardian.edit', $guardian->id) }}" 
                                         class="bg-blue-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">
                                             Edit
                                         </a>
                                         
-                                        <!-- Tombol untuk Hapus -->
                                         <button onClick="destroy(this.id)" 
                                                 id="{{ $guardian->id }}" 
                                                 class="bg-red-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">

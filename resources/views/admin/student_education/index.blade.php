@@ -33,21 +33,15 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">No</span>
                             </th>
-                            <!-- <th class="pr-10 py-4 text-left">
-                                <span class="text-white">ID</span>
-                            </th> -->
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Nama Santri</span>
                             </th>
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Kelas</span>
                             </th>
-                            <!-- <th class="px-10 py-4 text-left">
-                                <span class="text-white">Tahun Masuk</span>
-                            </th> -->
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Status</span>
                             </th>
@@ -60,21 +54,15 @@
                         @forelse($educations as $education)
                             <tr class="border bg-white">
         
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
-                                <!-- <td class="pr-10 py-2">
-                                    {{ $education->student_id }}
-                                </td> -->
                                 <td class="px-10 py-2">
                                     {{ $education->student->full_name ?? 'Santri tidak ditemukan' }}
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $education->class }} - {{ $education->education_level }}
                                 </td>
-                                <!-- <td class="px-10 py-2">
-                                    {{ $education->entry_year }}
-                                </td> -->
                                 <td class="px-10 py-2">
                                     {{ $education->graduation_status }}
                                 </td>

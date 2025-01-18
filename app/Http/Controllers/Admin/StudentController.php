@@ -8,41 +8,31 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\StudentGuardian;
 use App\Models\StudentEducation;
+use App\Models\StudentHealthRecord;
+use App\Models\StudentMemorization;
+use App\Models\StudentClothes;
+
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of students.
-     *
-     * @return \Illuminate\View\View
-     */
+    // index
     public function index()
     {
-        $students = Student::with('guardian', 'educations')->get();
+        $students = Student::with('education')->get();
         return view('admin.students.index', compact('students'));
     }
 
-    /**
-     * Show the form for creating a new student.
-     *
-     * @return \Illuminate\View\View
-     */
+    // create
     public function create()
     {
-        $guardians = StudentGuardian::all(); // Fetch available guardians
-        return view('admin.students.create', compact('guardians'));
+        $students = Student::all();
+        return view('admin.students.create', compact('students'));
     }
 
 
-    /**
-     * Store a newly created student in the database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+    // store
     public function store(Request $request)
     {
-        // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'full_name' => 'required|string|max:255',
             'birth_date' => 'required|date',
@@ -66,7 +56,6 @@ class StudentController extends Controller
             }
         }
 
-        // Menyimpan data santri
         $student = Student::create([
             'full_name' => $validatedData['full_name'],
             'nickname' => $validatedData['nickname'] ?? null,
@@ -75,52 +64,38 @@ class StudentController extends Controller
             'birth_place' => $validatedData['birth_place'],
             'address' => $validatedData['address'],
             'national_id' => $validatedData['national_id'] ?? null,
-            'religion' => $validatedData['religion'] ?? 'Islam', // Default ke 'Islam'
+            'religion' => $validatedData['religion'] ?? 'Islam',
             'status' => $validatedData['status'],
             'photo' => $filePath,
             'guardian_id' => $validatedData['guardian_id'] ?? null,
         ]);
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
 
 
-    /**
-     * Display the specified student.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\View\View
-     */
+    // detail
     public function show(Student $student)
     {
-        return view('admin.students.show', compact('student'));
+        $guardians = StudentGuardian::all();
+        $education = StudentEducation::all();
+        $healthrecord = StudentHealthRecord::all();
+        $memorization = StudentMemorization::all();
+        $cloth = StudentClothes::all();
+        return view('admin.students.show', compact('student', 'guardians', 'education', 'healthrecord', 'memorization', 'cloth'));
     }
 
-    /**
-     * Show the form for editing the specified student.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\View\View
-     */
+    // detail
     public function edit(Student $student)
     {
-        $guardians = StudentGuardian::all(); // Fetch available guardians
-        return view('admin.students.edit', compact('student', 'guardians'));
+        return view('admin.students.edit', compact('student'));
     }
 
 
-    /**
-     * Update the specified student in the database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\RedirectResponse
-     */
+    // update
     public function update(Request $request, $id)
     {
-        // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'full_name' => 'required|string|max:255',
             'birth_date' => 'required|date',
@@ -135,7 +110,6 @@ class StudentController extends Controller
             'guardian_id' => 'nullable|exists:student_guardians,id',
         ]);
 
-        // Ambil data santri berdasarkan ID
         $student = Student::findOrFail($id);
 
         // Menangani upload foto jika ada
@@ -149,7 +123,6 @@ class StudentController extends Controller
             $validatedData['photo'] = $request->file('photo')->store('photos', 'public');
         }
 
-        // Update data santri
         $student->update([
             'full_name' => $validatedData['full_name'],
             'nickname' => $validatedData['nickname'] ?? $student->nickname,
@@ -164,16 +137,11 @@ class StudentController extends Controller
             'guardian_id' => $validatedData['guardian_id'] ?? null,
         ]);
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Diperbarui!');
     }
 
-    /**
-     * destroy
-     *
-     * @param  mixed $id
-     * @return void
-     */
+    
+    // hapus
     public function destroy($id)
     {
         // Ambil data santri berdasarkan ID

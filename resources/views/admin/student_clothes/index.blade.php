@@ -33,22 +33,22 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">No</span>
                             </th>
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Nama Santri</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Ukuran Baju</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Ukuran Celana</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Ukuran Kepala</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Ukuran Sepatu</span>
                             </th>
                             <th class="px-10 py-4">
@@ -60,22 +60,22 @@
                         @forelse($clothes as $cloth)
                             <tr class="border bg-white">
         
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $cloth->student->full_name ?? 'Santri tidak ditemukan' }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $cloth->shirt_size }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $cloth->pants_size }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $cloth->head_size }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $cloth->shoe_size }}
                                 </td>
 
@@ -96,7 +96,6 @@
                                     </div>
                                 </td>
 
-
                             </tr>
                         @empty
                             <div class="bg-red-500 text-white text-center p-3 rounded-sm shadow-md">
@@ -110,6 +109,7 @@
         </div>
     </div>
 </main>
+
 <script>
     //ajax delete
     function destroy(id) {

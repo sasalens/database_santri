@@ -6,7 +6,7 @@
 
         <div class="p-6 bg-white rounded-md shadow-md">
             <div class="flex items-center gap-x-5">
-                <h2 class="text-3xl font-bold text-gray-700">Edit Data Santri</h2>
+                <h2 class="text-3xl font-semibold text-gray-700">Edit Data {{ $student->full_name }}</h2>
             </div>
             <hr class="mt-4">
             <form action="{{ route('admin.students.update', $student->id) }}" method="POST" enctype="multipart/form-data">
@@ -21,7 +21,7 @@
                                value="{{ old('full_name', $student->full_name) }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Nama Lengkap" 
-                               required minlength="3">
+                               required>
                         @error('full_name')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -51,8 +51,7 @@
                                 value="Laki-laki" 
                                 class="form-check-input" 
                                 {{ old('gender', $student->gender) === 'Laki-laki' ? 'checked' : '' }} 
-                                required
-                            >
+                                required>
                             <span class="ml-2">Laki-laki</span>
                         </label>
                         <label class="inline-flex items-center">
@@ -62,8 +61,7 @@
                                 value="Perempuan" 
                                 class="form-check-input" 
                                 {{ old('gender', $student->gender) === 'Perempuan' ? 'checked' : '' }} 
-                                required
-                            >
+                                required>
                             <span class="ml-2">Perempuan</span>
                         </label>
 
@@ -93,7 +91,8 @@
                                name="birth_place" 
                                value="{{ old('birth_place', $student->birth_place) }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Tempat Lahir">
+                               placeholder="Tempat Lahir"
+                               required>
                         @error('birth_place')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror

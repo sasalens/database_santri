@@ -33,7 +33,7 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">No</span>
                             </th>
                             <th class="pr-10 py-4 text-left">
@@ -57,7 +57,7 @@
                         @forelse($students as $student)
                             <tr class="border bg-white">
         
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="pr-10 py-2">
@@ -67,13 +67,7 @@
                                     {{ $student->nickname }}
                                 </td>
                                 <td class="px-10 py-2">
-                                    @forelse ($student->educations as $education)
-                                        <div>
-                                            {{ $education->class ?? '_' }} - {{ $education->education_level ?? '_' }}
-                                        </div>
-                                    @empty
-                                        _
-                                    @endforelse
+                                    {{ $student->education->class ?? '_' }} - {{ $student->education->education_level ?? '_' }}
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $student->gender }}

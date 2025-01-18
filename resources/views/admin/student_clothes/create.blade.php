@@ -5,7 +5,7 @@
     <div class="container mx-auto px-6 py-8">
         <div class="p-6 bg-white rounded-md shadow-md">
             <div class="flex items-center justify-between">
-                <h2 class="text-3xl font-bold text-gray-700">Tambah Data Pakaian Santri</h2>
+                <h2 class="text-3xl font-semibold text-gray-700">Tambah Data Pakaian Santri</h2>
             </div>
             <hr class="mt-4">
 
@@ -54,12 +54,12 @@
 
                     <!-- Ukuran Celana -->
                     <div>
-                        <label for="pants_size" class="text-gray-700">Ukuran Celana</label>
+                        <label for="pants_size" class="text-gray-700">Ukuran Celana/Rok</label>
                         <input type="number" 
                                name="pants_size" 
                                value="{{ old('pants_size') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Ukuran Celana">
+                               placeholder="Ukuran Celana/Rok">
                         @error('pants_size')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
@@ -140,10 +140,10 @@
     function updateSelectStyle(selectElement) {
         if (selectElement.value === "") {
             selectElement.style.fontStyle = 'italic';
-            selectElement.style.color = '#6b7280'; // Warna abu-abu
+            selectElement.style.color = '#6b7280'; 
         } else {
             selectElement.style.fontStyle = 'normal';
-            selectElement.style.color = '#374151'; // Warna teks default
+            selectElement.style.color = '#374151'; 
         }
     }
 
@@ -151,7 +151,7 @@
     updateSelectStyle(shirtSize);
 
     // Tambahkan event listener untuk perubahan pada kedua elemen
-    shirtSize.addEventListener('change', () => updateSelectStyle(bloodType));
+    shirtSize.addEventListener('change', () => updateSelectStyle(shirtSize));
 </script>
 
 <style>

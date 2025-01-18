@@ -6,7 +6,7 @@
 
         <div class="p-6 bg-white rounded-md shadow-md">
             <div class="flex items-center gap-x-5">
-                <h2 class="text-3xl font-bold text-gray-700">Edit Data Wali Santri</h2>
+                <h2 class="text-3xl font-semibold text-gray-700">Edit Data Wali Santri</h2>
             </div>
             <hr class="mt-4">
             <form action="{{ route('admin.student_guardian.update', $student_guardian->id) }}" method="POST" enctype="multipart/form-data">

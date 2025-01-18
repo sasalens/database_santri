@@ -23,7 +23,7 @@ class StudentEducationController extends Controller
      */
     public function create()
     {
-        $students = Student::doesntHave('educations')->get();
+        $students = Student::doesntHave('education')->get();
         return view('admin.student_education.create', compact('students'));
     }
 
@@ -41,14 +41,9 @@ class StudentEducationController extends Controller
             'graduation_status' => 'required|in:Lulus,Tidak Lulus,Belum Lulus',
         ]);
 
-        $education = StudentEducation::create([
-            'student_id' => $validatedData['student_id'],
-            'education_level' => $validatedData['education_level'],
-            'class' => $validatedData['class'],
-            'entry_year' => $validatedData['entry_year'],
-            'graduation_year' => $validatedData['graduation_year'],
-            'graduation_status' => $validatedData['graduation_status'] 
-        ]);
+        Student::findOrFail($validatedData['student_id'])
+        ->education()
+        ->create($validatedData);
 
         return redirect()->route('admin.student_education.index')->with('success', 'Data Berhasil Disimpan!');
     }
@@ -67,7 +62,7 @@ class StudentEducationController extends Controller
     public function edit(string $id)
     {
         $education = StudentEducation::findOrFail($id); // Ambil data pendidikan berdasarkan ID
-        $students = Student::all(); // Ambil semua data siswa untuk dropdown
+        $students = Student::all();
 
         return view('admin.student_education.edit', compact('education', 'students'));
     }
@@ -98,7 +93,7 @@ class StudentEducationController extends Controller
             'graduation_status' => $request['graduation_status'],
         ]);
 
-        return redirect()->route('admin.student_education.index')->with('success', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin.student_education.index')->with('success', 'Data Berhasil Diperbarui!');
     }
 
 

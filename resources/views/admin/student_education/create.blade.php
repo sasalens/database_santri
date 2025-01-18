@@ -5,7 +5,7 @@
     <div class="container mx-auto px-6 py-8">
         <div class="p-6 bg-white rounded-md shadow-md">
             <div class="flex items-center justify-between">
-                <h2 class="text-3xl font-bold text-gray-700">Tambah Data Pendidikan Santri</h2>
+                <h2 class="text-3xl font-semibold text-gray-700">Tambah Data Pendidikan Santri</h2>
             </div>
             <hr class="mt-4">
 

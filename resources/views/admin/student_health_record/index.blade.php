@@ -33,19 +33,19 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">No</span>
                             </th>
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Nama Santri</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Golongan Darah</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Riwayat Kesehatan</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Alergi</span>
                             </th>
                             <th class="px-10 py-4">
@@ -57,19 +57,19 @@
                         @forelse($healthrecords as $healthrecord)
                             <tr class="border bg-white">
         
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $healthrecord->student->full_name ?? 'Santri tidak ditemukan' }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $healthrecord->blood_type }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $healthrecord->medical_history }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $healthrecord->allergies }}
                                 </td>
 
@@ -89,7 +89,6 @@
                                         </button>
                                     </div>
                                 </td>
-
 
                             </tr>
                         @empty

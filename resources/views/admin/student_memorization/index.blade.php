@@ -33,16 +33,16 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">No</span>
                             </th>
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Nama Santri</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Total Juz</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
+                            <th class="px-10 py-4">
                                 <span class="text-white">Tanggal</span>
                             </th>
                             <th class="px-10 py-4">
@@ -54,17 +54,17 @@
                         @forelse($memorizations as $memorization)
                             <tr class="border bg-white">
         
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-10 py-2">
                                     {{ $memorization->student->full_name ?? 'Santri tidak ditemukan' }}
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $memorization->total_juz }}
                                     <span>- Juz</span>
                                 </td>
-                                <td class="px-10 py-2">
+                                <td class="px-10 py-2 text-center">
                                     {{ $memorization->last_updated }}
                                 </td>
 
