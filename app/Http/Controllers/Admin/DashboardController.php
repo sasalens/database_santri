@@ -15,12 +15,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $totalStudents = Student::count(); // Total santri
+        $totalStudents = Student::where('status', 'Aktif')->count();
+        $totalAlumni = Student::where('status', 'Alumni')->count();
         $totalGuardian = StudentGuardian::count();
 
         // Kirim data ke view
         return view('admin.dashboard.index', compact(
             'totalStudents',
+            'totalAlumni',
             'totalGuardian',
         ));
     }
