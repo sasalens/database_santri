@@ -98,6 +98,20 @@
                         @enderror
                     </div>
 
+                    <!-- No Telepon -->
+                    <div>
+                        <label for="no_hp" class="text-gray-700">No Telepon</label>
+                        <input type="text" 
+                               name="no_hp" 
+                               value="{{ old('no_hp', $student->no_hp) }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="No Telepon"
+                               required>
+                        @error('no_hp')
+                        <span class="text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <!-- Alamat -->
                     <div class="col-span-1 md:col-span-2 lg:col-span-3">
                         <label for="address" class="text-gray-700">Alamat</label>

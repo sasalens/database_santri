@@ -2,48 +2,43 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\StudentClothes;
-use App\Models\StudentHealthRecord;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {
-    return view('auth.login');
-});
-
 /**
- * route for admin
+ * Route for admin
  */
 
-//group route with prefix "admin"
+// Group route with prefix "admin"
 Route::prefix('admin')->group(function () {
 
-    //group route with middleware "auth"
+    // Group route with middleware "auth"
     Route::group(['middleware' => 'auth'], function() {
 
-        //route dashboard
+        // Route dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
-        
-        //route resource santri
-        Route::resource('/students', StudentController::class,['as' => 'admin']);
 
-        //route resource wali santri
-        Route::resource('/student_guardian', StudentGuardianController::class,['as' => 'admin']);
+        // Route alumni (custom route for alumni)
+        Route::get('students/alumni', [StudentController::class, 'alumni'])->name('admin.students.alumni');
 
-        //route resource pendidikan santri
-        Route::resource('/student_education', StudentEducationController::class,['as' => 'admin']);
+        // Route for students
+        Route::resource('students', StudentController::class, ['as' => 'admin']);
 
-        //route resource hafalan santri
-        Route::resource('/student_memorization', StudentMemorizationController::class,['as' => 'admin']);
+        // Route resource for student guardians
+        Route::resource('student_guardian', StudentGuardianController::class, ['as' => 'admin']);
 
-        //route resource kesehatan santri
-        Route::resource('/student_health_record', StudentHealthRecordController::class,['as' => 'admin']);
+        // Route resource for student education
+        Route::resource('student_education', StudentEducationController::class, ['as' => 'admin']);
 
-        //route resource kesehatan santri
-        Route::resource('/student_clothes', StudentClothesController::class,['as' => 'admin']);
+        // Route resource for student memorization
+        Route::resource('student_memorization', StudentMemorizationController::class, ['as' => 'admin']);
 
-        //route profile
-        Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');   
+        // Route resource for student health record
+        Route::resource('student_health_record', StudentHealthRecordController::class, ['as' => 'admin']);
 
+        // Route resource for student clothes
+        Route::resource('student_clothes', StudentClothesController::class, ['as' => 'admin']);
+
+        // Route for profile
+        Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
     });
 });

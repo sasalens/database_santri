@@ -50,7 +50,7 @@
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <h4 class="text-2xl font-semibold text-gray-700">{{ $totalAlumni }}</h4>
+                    <h4 class="text-2xl font-semibold text-gray-700">900</h4>
                     <div class="text-sm text-gray-500">Jumlah Alumni</div>
                 </div>
             </div>

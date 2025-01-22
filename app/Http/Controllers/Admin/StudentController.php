@@ -18,9 +18,18 @@ class StudentController extends Controller
     // index
     public function index()
     {
-        $students = Student::with('education')->get();
+        $students = Student::where('status', 'Aktif')->get();
         return view('admin.students.index', compact('students'));
     }
+
+
+    // alumni
+    public function alumni()
+    {
+        $alumni = Student::where('status', 'Alumni')->get();
+        return view('admin.students.alumni', compact('alumni'));
+    }
+
 
     // create
     public function create()
@@ -37,6 +46,7 @@ class StudentController extends Controller
             'full_name' => 'required|string|max:255',
             'birth_date' => 'required|date',
             'birth_place' => 'required|string|max:255',
+            'no_hp' => 'nullable|string|max:15',
             'gender' => 'required|string|in:Laki-laki,Perempuan',
             'address' => 'required|string|max:500',
             'status' => 'required|string|in:Aktif,Alumni',
@@ -62,6 +72,7 @@ class StudentController extends Controller
             'gender' => $validatedData['gender'],
             'birth_date' => $validatedData['birth_date'],
             'birth_place' => $validatedData['birth_place'],
+            'no_hp' => $validatedData['no_hp'],
             'address' => $validatedData['address'],
             'national_id' => $validatedData['national_id'] ?? null,
             'religion' => $validatedData['religion'] ?? 'Islam',
@@ -86,7 +97,7 @@ class StudentController extends Controller
         return view('admin.students.show', compact('student', 'guardians', 'education', 'healthrecord', 'memorization', 'cloth'));
     }
 
-    // detail
+    // edit
     public function edit(Student $student)
     {
         return view('admin.students.edit', compact('student'));
@@ -100,6 +111,7 @@ class StudentController extends Controller
             'full_name' => 'required|string|max:255',
             'birth_date' => 'required|date',
             'birth_place' => 'required|string|max:255',
+            'no_hp' => 'nullable|string|max:15',
             'gender' => 'required|string|in:Laki-laki,Perempuan',
             'address' => 'required|string|max:500',
             'status' => 'required|string|in:Aktif,Alumni',
@@ -129,6 +141,7 @@ class StudentController extends Controller
             'gender' => $validatedData['gender'],
             'birth_date' => $validatedData['birth_date'],
             'birth_place' => $validatedData['birth_place'],
+            'no_hp' => $validatedData['no_hp'],
             'address' => $validatedData['address'],
             'national_id' => $validatedData['national_id'] ?? $student->national_id,
             'religion' => $validatedData['religion'] ?? $student->religion,

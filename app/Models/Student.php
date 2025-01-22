@@ -15,6 +15,7 @@ class Student extends Model
         'gender',
         'birth_date',
         'birth_place',
+        'no_hp',
         'address',
         'national_id',
         'religion',
@@ -22,6 +23,19 @@ class Student extends Model
         'photo',
         'guardian_id',
     ];
+
+    // Event untuk memindahkan data ke alumni jika status berubah menjadi 'Alumni'
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($student) {
+            if ($student->isDirty('status') && $student->status === 'Alumni') {
+                $student->graduation_year = now(); // Menyimpan tahun kelulusan
+                $student->save();
+            }
+        });
+    }
 
     // Relasi 1-to-1 ke pakaian
     public function clothes()
@@ -51,12 +65,6 @@ class Student extends Model
     public function memorization()
     {
         return $this->hasOne(StudentMemorization::class);
-    }
-
-    // Relasi 1-to-1 ke alumni (jika statusnya alumni)
-    public function alumnus()
-    {
-        return $this->hasOne(Alumnus::class);
     }
 
 

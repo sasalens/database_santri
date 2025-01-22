@@ -9,6 +9,8 @@ class Alumnus extends Model
 {
     use HasFactory;
 
+    protected $table = 'alumni';
+
     protected $fillable = [
         'student_id',
         'graduation_year',

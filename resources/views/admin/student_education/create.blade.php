@@ -70,7 +70,7 @@
                                value="{{ old('entry_year') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic"  
                                placeholder="Tahun Masuk" 
-                               required minlength="3">
+                               required minlength="4">
                         @error('entry_year')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror

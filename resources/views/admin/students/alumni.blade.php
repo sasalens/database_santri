@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Data Santri - Admin'])
+@extends('layouts.app', ['title' => 'Data Alumni - Admin'])
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
@@ -42,11 +42,11 @@
                             <th class="px-10 py-4 text-left">
                                 <span class="text-white">Nama Pondok</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
-                                <span class="text-white">Jenis Kelamin</span>
+                            <th class="px-10 py-4">
+                                <span class="text-white">Tahun Lulus</span>
                             </th>
-                            <th class="px-10 py-4 text-left">
-                                <span class="text-white">Status</span>
+                            <th class="px-10 py-4">
+                                <span class="text-white">Jenis Kelamin</span>
                             </th>
                             <th class="px-10 py-4">
                                 <span class="text-white">Action</span>
@@ -54,29 +54,29 @@
                         </tr>
                     </thead>
                     <tbody class="bg-gray-200">
-                        @forelse($students as $student)
+                        @forelse($alumni as $alumnus)
                             <tr class="border bg-white">
         
                                 <td class="px-10 py-2 text-center">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="pr-10 py-2">
-                                    {{ $student->full_name }}
+                                    {{ $alumnus->full_name }}
                                 </td>
                                 <td class="px-10 py-2">
-                                    {{ $student->nickname }}
+                                    {{ $alumnus->nickname }}
                                 </td>
-                                <td class="px-10 py-2">
-                                    {{ $student->gender }}
+                                <td class="px-10 py-2 text-center">
+                                    {{ \Carbon\Carbon::parse($alumnus->graduation_year)->format('Y') }}
                                 </td>
-                                <td class="px-10 py-2">
-                                    {{ $student->status }}
+                                <td class="px-10 py-2 text-center">
+                                    {{ $alumnus->gender }}
                                 </td>
                                 <td class="px-10 py-2 text-center">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('admin.students.show', $student->id) }}" class="bg-yellow-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Detail</a>
-                                        <a href="{{ route('admin.students.edit', $student->id) }}" class="bg-blue-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Edit</a>
-                                        <button onClick="destroy(this.id)" id="{{ $student->id }}" class="bg-red-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Hapus</button>
+                                        <a href="{{ route('admin.students.show', $alumnus->id) }}" class="bg-yellow-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Detail</a>
+                                        <a href="{{ route('admin.students.edit', $alumnus->id) }}" class="bg-blue-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Edit</a>
+                                        <button onClick="destroy(this.id)" id="{{ $alumnus->id }}" class="bg-red-600 px-3 py-2 rounded shadow-sm text-xs text-white focus:outline-none">Hapus</button>
                                     </div>
                                 </td>
 

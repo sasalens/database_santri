@@ -40,7 +40,7 @@
                                value="{{ old('total_juz') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
                                placeholder="Total Juz" 
-                               required minlength="3">
+                               required>
                         @error('total_juz')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror

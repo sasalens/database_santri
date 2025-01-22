@@ -77,8 +77,22 @@
                                name="birth_place" 
                                value="{{ old('birth_place') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Tempat Lahir">
+                               placeholder="Tempat Lahir"
+                               required>
                         @error('birth_place')
+                        <span class="text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- No Telepon -->
+                    <div>
+                        <label for="no_hp" class="text-gray-700">No Telepon</label>
+                        <input type="text" 
+                               name="no_hp" 
+                               value="{{ old('no_hp') }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="No Telepon">
+                        @error('no_hp')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
