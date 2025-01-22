@@ -42,5 +42,8 @@ Route::prefix('admin')->group(function () {
         //route resource kesehatan santri
         Route::resource('/student_clothes', StudentClothesController::class,['as' => 'admin']);
 
+        //route profile
+        Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');   
+
     });
 });
