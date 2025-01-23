@@ -18,22 +18,22 @@
                             class="border-4 border-white rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
                     </div>
 
-                    <x-view-detail label="Nama Lengkap" value="{{ $student->full_name }}"></x-view-detail>
-                    <x-view-detail label="Nama Pondok" value="{{ $student->nickname }}"></x-view-detail>
-                    <x-view-detail label="Jenis Kelamin" value="{{ $student->gender }}"></x-view-detail>
-                    <x-view-detail label="Tanggal Lahir" value="{{ $student->birth_date }}"></x-view-detail>
-                    <x-view-detail label="Tempat Lahir" value="{{ $student->birth_place }}"></x-view-detail>
-                    <x-view-detail label="No Telepon" value="{{ $student->no_hp }}"></x-view-detail>
+                    <x-view-detail label="Nama Lengkap" value="{{ $student->full_name ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Nama Pondok" value="{{ $student->nickname ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Jenis Kelamin" value="{{ $student->gender ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Tanggal Lahir" value="{{ $student->birth_date ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Tempat Lahir" value="{{ $student->birth_place ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="No Telepon" value="{{ $student->no_hp ?? '_' }}"></x-view-detail>
                     <div class="mt-4">
                         <label class="block">
                             <span class="text-gray-700 text-sm">Alamat</span>
-                            <textarea name="address" id="" class="form-input mt-1 block w-full rounded-md" readonly>{{ $student->address }}</textarea>
+                            <textarea name="address" id="" class="form-input mt-1 block w-full rounded-md" readonly>{{ $student->address ?? '_' }}</textarea>
                         </label>
                     </div>
-                    <x-view-detail label="NIK" value="{{ $student->national_id }}"></x-view-detail>
-                    <x-view-detail label="Agama" value="{{ $student->religion }}"></x-view-detail>
-                    <x-view-detail label="Status" value="{{ $student->status }}"></x-view-detail>
-                    <x-view-detail label="Tahun Lulus" value="{{ $student->graduation_year }}"></x-view-detail>
+                    <x-view-detail label="NIK" value="{{ $student->national_id ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Agama" value="{{ $student->religion ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Status" value="{{ $student->status ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Tahun Lulus" value="{{ $student->graduation_year ?? '_' }}"></x-view-detail>
                     <br>
                     <!-- <a href="{{ route('admin.students.edit', $student->id) }}" class="bg-blue-600 px-4 py-2 rounded text-m text-white focus:outline-none">Edit Data</a> -->
                 </div>
