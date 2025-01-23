@@ -17,6 +17,9 @@ class StudentMemorizationController extends Controller
         $query = $request->input('q');
 
         $memorizations = StudentMemorization::with('student')
+                    ->whereHas('student', function ($q) {
+                        $q->where('status', 'Aktif'); // Hanya santri aktif
+                    })
                     ->when($query, function ($queryBuilder) use ($query) {
                         return $queryBuilder->whereHas('student', function ($q) use ($query) {
                             $q->where('full_name', 'like', '%' . $query . '%')
@@ -27,6 +30,7 @@ class StudentMemorizationController extends Controller
 
         return view('admin.student_memorization.index', compact('memorizations'));
     }
+
 
 
     /**

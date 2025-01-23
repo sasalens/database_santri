@@ -17,6 +17,9 @@ class StudentHealthRecordController extends Controller
         $query = $request->input('q');
 
         $healthrecords = StudentHealthRecord::with('student')
+                    ->whereHas('student', function ($q) {
+                        $q->where('status', 'Aktif'); // Hanya santri aktif
+                    })
                     ->when($query, function ($queryBuilder) use ($query) {
                         return $queryBuilder->whereHas('student', function ($q) use ($query) {
                             $q->where('full_name', 'like', '%' . $query . '%');

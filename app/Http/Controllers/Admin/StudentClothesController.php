@@ -17,19 +17,23 @@ class StudentClothesController extends Controller
         $query = $request->input('q');
 
         $clothes = StudentClothes::with('student')
+                    ->whereHas('student', function ($q) {
+                        $q->where('status', 'Aktif'); // Hanya santri aktif
+                    })
                     ->when($query, function ($queryBuilder) use ($query) {
                         return $queryBuilder->whereHas('student', function ($q) use ($query) {
-                            $q->where('full_name', 'like', '%' . $query . '%')
-                            ->orWhere('shirt_size', 'like', '%' . $query . '%')
-                            ->orWhere('pants_size', 'like', '%' . $query . '%')
-                            ->orWhere('head_size', 'like', '%' . $query . '%')
-                            ->orWhere('shoe_size', 'like', '%' . $query . '%');
-                        });
+                            $q->where('full_name', 'like', '%' . $query . '%');
+                        })
+                        ->orWhere('shirt_size', 'like', '%' . $query . '%')
+                        ->orWhere('pants_size', 'like', '%' . $query . '%')
+                        ->orWhere('head_size', 'like', '%' . $query . '%')
+                        ->orWhere('shoe_size', 'like', '%' . $query . '%');
                     })
                     ->get();
 
         return view('admin.student_clothes.index', compact('clothes'));
     }
+
 
 
     /**
