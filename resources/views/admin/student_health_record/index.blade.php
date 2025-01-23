@@ -21,7 +21,7 @@
                             stroke-linejoin="round" />
                     </svg>
                 </span>
-                <form action="{{ route('admin.students.index') }}" method="GET">
+                <form action="{{ route('admin.student_health_record.index') }}" method="GET">
                     <input class="form-input w-full rounded-lg pl-10 pr-4" type="text" name="q" value="{{ request()->query('q') }}"
                     placeholder="Search">
                 </form>

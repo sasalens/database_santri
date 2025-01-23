@@ -12,11 +12,25 @@ class StudentClothesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clothes = StudentClothes::with('student')->get();
+        $query = $request->input('q');
+
+        $clothes = StudentClothes::with('student')
+                    ->when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->whereHas('student', function ($q) use ($query) {
+                            $q->where('full_name', 'like', '%' . $query . '%')
+                            ->orWhere('shirt_size', 'like', '%' . $query . '%')
+                            ->orWhere('pants_size', 'like', '%' . $query . '%')
+                            ->orWhere('head_size', 'like', '%' . $query . '%')
+                            ->orWhere('shoe_size', 'like', '%' . $query . '%');
+                        });
+                    })
+                    ->get();
+
         return view('admin.student_clothes.index', compact('clothes'));
     }
+
 
     /**
      * Show the form for creating a new resource.

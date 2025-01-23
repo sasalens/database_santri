@@ -12,11 +12,22 @@ class StudentMemorizationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $memorizations = StudentMemorization::with('student')->get();
+        $query = $request->input('q');
+
+        $memorizations = StudentMemorization::with('student')
+                    ->when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->whereHas('student', function ($q) use ($query) {
+                            $q->where('full_name', 'like', '%' . $query . '%')
+                            ->orWhere('total_juz', 'like', '%' . $query . '%');
+                        });
+                    })
+                    ->get();
+
         return view('admin.student_memorization.index', compact('memorizations'));
     }
+
 
     /**
      * Show the form for creating a new resource.

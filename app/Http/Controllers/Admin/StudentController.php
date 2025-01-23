@@ -16,19 +16,40 @@ use App\Models\StudentClothes;
 class StudentController extends Controller
 {
     // index
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::where('status', 'Aktif')->get();
+        $query = $request->input('q');
+
+        $students = Student::where('status', 'Aktif')
+                    ->when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->where(function ($q) use ($query) {
+                            $q->where('full_name', 'like', '%' . $query . '%')
+                            ->orWhere('nickname', 'like', '%' . $query . '%');
+                        });
+                    })
+                    ->get();
+
         return view('admin.students.index', compact('students'));
     }
-
+    
 
     // alumni
-    public function alumni()
+    public function alumni(Request $request)
     {
-        $alumni = Student::where('status', 'Alumni')->get();
+        $query = $request->input('q');
+
+        $alumni = Student::where('status', 'Alumni')
+                    ->when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->where(function ($q) use ($query) {
+                            $q->where('full_name', 'like', '%' . $query . '%')
+                            ->orWhere('nickname', 'like', '%' . $query . '%');
+                        });
+                    })
+                    ->get();
+
         return view('admin.students.alumni', compact('alumni'));
     }
+
 
 
     // create

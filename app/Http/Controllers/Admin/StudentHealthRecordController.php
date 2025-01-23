@@ -12,11 +12,24 @@ class StudentHealthRecordController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $healthrecords = StudentHealthRecord::with('student')->get();
+        $query = $request->input('q');
+
+        $healthrecords = StudentHealthRecord::with('student')
+                    ->when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->whereHas('student', function ($q) use ($query) {
+                            $q->where('full_name', 'like', '%' . $query . '%');
+                        })
+                        ->orWhere('blood_type', 'like', '%' . $query . '%')
+                        ->orWhere('medical_history', 'like', '%' . $query . '%')
+                        ->orWhere('allergies', 'like', '%' . $query . '%');
+                    })
+                    ->get();
+
         return view('admin.student_health_record.index', compact('healthrecords'));
     }
+
 
     /**
      * Show the form for creating a new resource.

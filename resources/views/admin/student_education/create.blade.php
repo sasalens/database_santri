@@ -55,8 +55,7 @@
                                name="class" 
                                value="{{ old('class') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
-                               placeholder="Kelas" 
-                               required maxlength="3">
+                               placeholder="Kelas">
                         @error('class')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror

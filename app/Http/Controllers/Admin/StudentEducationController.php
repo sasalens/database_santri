@@ -12,11 +12,24 @@ class StudentEducationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $educations = StudentEducation::with('student')->get();
+        $query = $request->input('q');
+
+        $educations = StudentEducation::with('student')
+                    ->when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->whereHas('student', function ($q) use ($query) {
+                            $q->where('full_name', 'like', '%' . $query . '%')
+                            ->orWhere('class', 'like', '%' . $query . '%')
+                            ->orWhere('entry_year', 'like', '%' . $query . '%')
+                            ->orWhere('graduation_year', 'like', '%' . $query . '%');
+                        });
+                    })
+                    ->get();
+
         return view('admin.student_education.index', compact('educations'));
     }
+
 
     /**
      * Show the form for creating a new resource.

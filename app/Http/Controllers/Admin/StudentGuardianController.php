@@ -11,11 +11,21 @@ use App\Models\StudentGuardian;
 class StudentGuardianController extends Controller
 {
     // index
-    public function index()
+    public function index(Request $request)
     {
-        $guardians = StudentGuardian::all();
+        $query = $request->input('q');
+
+        $guardians = StudentGuardian::when($query, function ($queryBuilder) use ($query) {
+                        return $queryBuilder->where('full_name', 'like', '%' . $query . '%')
+                                            ->orWhere('father_name', 'like', '%' . $query . '%')
+                                            ->orWhere('mother_name', 'like', '%' . $query . '%')
+                                            ->orWhere('guardian_name', 'like', '%' . $query . '%');
+                    })
+                    ->get();
+
         return view('admin.student_guardian.index', compact('guardians'));
     }
+
 
     
     // create
