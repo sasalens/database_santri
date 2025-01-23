@@ -81,7 +81,62 @@ class StudentGuardianController extends Controller
             : redirect()->route('admin.student_guardian.index')->with('error', 'Data Gagal Disimpan!');
     }
 
-    // detail, kosong aja
+
+    // create langsung
+    public function createe()
+    {
+        $students = Student::all();
+        return view('admin.student_guardian.createe', compact('students')); 
+    }
+
+
+    // store langsung
+    public function storee(Request $request)
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'father_name' => 'string|max:255',
+            'father_occupation' => 'nullable|string|max:255',
+            'father_phone' => 'nullable|string|max:15',
+            'mother_name' => 'string|max:255',
+            'mother_occupation' => 'nullable|string|max:255',
+            'mother_phone' => 'nullable|string|max:15',
+            'guardian_name' => 'nullable|string|max:255',
+            'guardian_relationship' => 'in:Orang Tua,Saudara,Paman,Bibi,Lainnya',
+            'guardian_phone' => 'nullable|string|max:15',
+            'address' => 'string|max:500',
+            'student_id' => 'required|array', 
+            'student_id.*' => 'exists:students,id', 
+        ]);
+
+
+        // Menyimpan data wali santri
+        $guardian = StudentGuardian::create([
+            'father_name' => $validatedData['father_name'],
+            'father_occupation' => $validatedData['father_occupation'] ?? null,
+            'father_phone' => $validatedData['father_phone'] ?? null,
+            'mother_name' => $validatedData['mother_name'],
+            'mother_occupation' => $validatedData['mother_occupation'] ?? null,
+            'mother_phone' => $validatedData['mother_phone'] ?? null,
+            'guardian_name' => $validatedData['guardian_name'] ?? null,
+            'guardian_relationship' => $validatedData['guardian_relationship'] ?? null,
+            'guardian_phone' => $validatedData['guardian_phone'] ?? null,
+            'address' => $validatedData['address'],
+        ]);
+
+        // Menyimpan relasi satu wali ke banyak santri
+        if ($guardian) {
+            // Update kolom `guardian_id` pada tabel `students`
+            Student::whereIn('id', $validatedData['student_id'])->update(['guardian_id' => $guardian->id]);
+        }
+
+        // redirect tambah data selanjutnya
+        return redirect()->route('admin.student_education.createe', ['student_id' => $validatedData['student_id'][0]])
+                     ->with('success', 'Wali santri berhasil ditambahkan! Sekarang tambah data pendidikan.');
+    }
+
+
+    // detail
     public function show(StudentGuardian $student_guardian)
     {
         //

@@ -61,6 +61,41 @@ class StudentEducationController extends Controller
         return redirect()->route('admin.student_education.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
+
+    // createe langsung
+    public function createe()
+    {
+        $students = Student::all();
+        return view('admin.student_education.createe', compact('students'));
+    }
+
+    // store langsung
+    public function storee(Request $request)
+    {
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'education_level' => 'required|string|max:255',
+            'class' => 'required|string|max:255',
+            'entry_year' => 'required|digits:4',
+            'graduation_year' => 'nullable|digits:4',
+            'graduation_status' => 'required|in:Lulus,Tidak Lulus,Belum Lulus',
+        ]);
+
+        StudentEducation::create([
+            'student_id' => $request['student_id'], 
+            'education_level' => $request['education_level'],
+            'class' => $request['class'],
+            'entry_year' => $request['entry_year'],
+            'graduation_year' => $request['graduation_year'],
+            'graduation_status' => $request['graduation_status'],
+        ]);
+
+        return redirect()->route('admin.student_memorization.createe', ['student_id' => $request['student_id'][0]])
+                     ->with('success', 'Data pendidikan berhasil ditambahkan! Sekarang tambah data hafalan.');
+    }
+
+
+
     /**
      * Display the specified resource.
      */

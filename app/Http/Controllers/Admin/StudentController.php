@@ -102,7 +102,9 @@ class StudentController extends Controller
             'guardian_id' => $validatedData['guardian_id'] ?? null,
         ]);
 
-        return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Disimpan!');
+        // return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('admin.student_guardian.createe', ['student_id' => $student->id])
+                     ->with('success', 'Santri berhasil ditambahkan! Sekarang tambah data wali santri.');
     }
 
 

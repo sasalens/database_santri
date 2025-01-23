@@ -58,6 +58,32 @@ class StudentHealthRecordController extends Controller
         return redirect()->route('admin.student_health_record.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
+
+    // create langsung
+    public function createe()
+    {
+        $students = Student::doesnthave('healthRecord')->get();
+        return view('admin.student_health_record.createe', compact('students'));
+    }
+
+    // store langsung
+    public function storee(Request $request)
+    {
+        $request->validate([
+            'student_id' => 'required|exists:students,id|unique:student_health_records,student_id',
+            'blood_type' => 'nullable|string|max:3',
+            'medical_history' => 'nullable|string',
+            'allergies' => 'nullable|string',
+            'emergency_contact' => 'nullable|string|max:255',
+        ]);
+
+        StudentHealthRecord::create($request->all());
+
+        return redirect()->route('admin.student_clothes.createe', ['student_id' => $request['student_id'][0]])
+                     ->with('success', 'Data kesehatan berhasil ditambahkan! Sekarang tambah data pakaian.');
+    }
+
+
     /**
      * Display the specified resource.
      */

@@ -54,6 +54,32 @@ class StudentMemorizationController extends Controller
         return redirect()->route('admin.student_memorization.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
+
+
+    // create langsung
+    public function createe()
+    {
+        $students = Student::all();
+        return view('admin.student_memorization.createe', compact('students'));
+    }
+
+    // store langsung
+    public function storee(Request $request)
+    {
+        $request->validate([
+            'student_id' => 'required|exists:students,id|unique:student_memorizations,id',
+            'total_juz' => 'required|integer|min:0|max:30',
+            'last_updated' => 'nullable|date',
+        ]);
+
+        StudentMemorization::create($request->all());
+
+        return redirect()->route('admin.student_health_record.createe', ['student_id' => $request['student_id'][0]])
+                     ->with('success', 'Data hafalan berhasil ditambahkan! Sekarang tambah data kesehatan.');
+    }
+
+
+
     /**
      * Display the specified resource.
      */

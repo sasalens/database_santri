@@ -60,6 +60,31 @@ class StudentClothesController extends Controller
         return redirect()->route('admin.student_clothes.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
+
+    // create langsung
+    public function createe()
+    {
+        $students = Student::doesnthave('clothes')->get();
+        return view('admin.student_clothes.createe', compact('students'));
+    }
+
+    // store langsung
+    public function storee(Request $request)
+    {
+        $validatedData = $request->validate([
+            'student_id' => 'required|exists:students,id|unique:student_clothes,student_id',
+            'shirt_size' => 'nullable|string|max:10',
+            'pants_size' => 'nullable|string|max:10',
+            'head_size' => 'nullable|string|max:10',
+            'shoe_size' => 'nullable|string|max:10',
+            'others'     => 'nullable|string|max:255',
+        ]);
+
+        $studentClothes = StudentClothes::create($validatedData);
+
+        return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Disimpan!');
+    }
+
     /**
      * Display the specified resource.
      */
