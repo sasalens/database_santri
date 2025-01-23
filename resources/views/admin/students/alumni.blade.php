@@ -67,7 +67,7 @@
                                     {{ $alumnus->nickname }}
                                 </td>
                                 <td class="px-10 py-2 text-center">
-                                    {{ \Carbon\Carbon::parse($alumnus->graduation_year)->format('Y') }}
+                                    {{ $alumnus->graduation_year }}
                                 </td>
                                 <td class="px-10 py-2 text-center">
                                     {{ $alumnus->gender }}

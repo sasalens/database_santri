@@ -20,22 +20,10 @@ class Student extends Model
         'national_id',
         'religion',
         'status',
+        'graduation_year',
         'photo',
         'guardian_id',
     ];
-
-    // Event untuk memindahkan data ke alumni jika status berubah menjadi 'Alumni'
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::updated(function ($student) {
-            if ($student->isDirty('status') && $student->status === 'Alumni') {
-                $student->graduation_year = now(); // Menyimpan tahun kelulusan
-                $student->save();
-            }
-        });
-    }
 
     // Relasi 1-to-1 ke pakaian
     public function clothes()

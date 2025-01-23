@@ -71,6 +71,7 @@ class StudentController extends Controller
             'gender' => 'required|string|in:Laki-laki,Perempuan',
             'address' => 'required|string|max:500',
             'status' => 'required|string|in:Aktif,Alumni',
+            'graduation_year' => 'nullable|digits:4',
             'nickname' => 'nullable|string|max:50',
             'national_id' => 'nullable|string|max:20',
             'religion' => 'nullable|string|max:50',
@@ -98,6 +99,7 @@ class StudentController extends Controller
             'national_id' => $validatedData['national_id'] ?? null,
             'religion' => $validatedData['religion'] ?? 'Islam',
             'status' => $validatedData['status'],
+            'graduation_year' => $validatedData['graduation_year'],
             'photo' => $filePath,
             'guardian_id' => $validatedData['guardian_id'] ?? null,
         ]);
@@ -138,6 +140,7 @@ class StudentController extends Controller
             'gender' => 'required|string|in:Laki-laki,Perempuan',
             'address' => 'required|string|max:500',
             'status' => 'required|string|in:Aktif,Alumni',
+            'graduation_year' => 'nullable|digits:4',
             'nickname' => 'nullable|string|max:50',
             'national_id' => 'nullable|string|max:20',
             'religion' => 'nullable|string|max:50',
@@ -169,6 +172,7 @@ class StudentController extends Controller
             'national_id' => $validatedData['national_id'] ?? $student->national_id,
             'religion' => $validatedData['religion'] ?? $student->religion,
             'status' => $validatedData['status'],
+            'graduation_year' => $validatedData['graduation_year'],
             'photo' => $validatedData['photo'] ?? $student->photo,
             'guardian_id' => $validatedData['guardian_id'] ?? null,
         ]);

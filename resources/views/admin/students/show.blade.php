@@ -23,6 +23,7 @@
                     <x-view-detail label="Jenis Kelamin" value="{{ $student->gender }}"></x-view-detail>
                     <x-view-detail label="Tanggal Lahir" value="{{ $student->birth_date }}"></x-view-detail>
                     <x-view-detail label="Tempat Lahir" value="{{ $student->birth_place }}"></x-view-detail>
+                    <x-view-detail label="No Telepon" value="{{ $student->no_hp }}"></x-view-detail>
                     <div class="mt-4">
                         <label class="block">
                             <span class="text-gray-700 text-sm">Alamat</span>
@@ -32,6 +33,7 @@
                     <x-view-detail label="NIK" value="{{ $student->national_id }}"></x-view-detail>
                     <x-view-detail label="Agama" value="{{ $student->religion }}"></x-view-detail>
                     <x-view-detail label="Status" value="{{ $student->status }}"></x-view-detail>
+                    <x-view-detail label="Tahun Lulus" value="{{ $student->graduation_year }}"></x-view-detail>
                     <br>
                     <!-- <a href="{{ route('admin.students.edit', $student->id) }}" class="bg-blue-600 px-4 py-2 rounded text-m text-white focus:outline-none">Edit Data</a> -->
                 </div>

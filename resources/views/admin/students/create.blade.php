@@ -112,7 +112,7 @@
                     <!-- NIK -->
                     <div>
                         <label for="national_id" class="text-gray-700">NIK</label>
-                        <input type="text" 
+                        <input type="number" 
                                name="national_id" 
                                value="{{ old('national_id') }}" 
                                class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
@@ -120,16 +120,6 @@
                         @error('national_id')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
-                    </div>
-
-                    <!-- Agama -->
-                    <div>
-                        <label for="religion" class="text-gray-700">Agama</label>
-                        <input type="text" 
-                               name="religion" 
-                               value="Islam" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
-                               readonly>
                     </div>
 
                     <!-- Status -->
@@ -144,6 +134,19 @@
                             <option value="Alumni" class="text-gray-700">Alumni</option>
                         </select>
                         @error('status')
+                        <span class="text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Tahun kelulusan -->
+                    <div>
+                        <label for="graduation_year" class="text-gray-700">Tahun Kelulusan</label>
+                        <input type="number" 
+                               name="graduation_year" 
+                               value="{{ old('graduation_year') }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="Tahun Kelulusan" maxlength="16">
+                        @error('graduation_year')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
@@ -182,6 +185,15 @@
                             @enderror
                         </div>
                         
+                    </div>
+
+                    <!-- Agama -->
+                    <div>
+                        <input type="hidden" 
+                               name="religion" 
+                               value="Islam" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
+                               readonly>
                     </div>
 
                 </div>
