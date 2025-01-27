@@ -137,16 +137,6 @@
                         @enderror
                     </div>
 
-                    <!-- Agama -->
-                    <div>
-                        <label for="religion" class="text-gray-700">Agama</label>
-                        <input type="text" 
-                               name="religion" 
-                               value="Islam" 
-                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
-                               readonly>
-                    </div>
-
                     <!-- Status -->
                     <div>
                         <label for="status" class="text-gray-700">Status</label>
@@ -159,6 +149,19 @@
                             <option class="py-1" value="Alumni" {{ old('status', $student->status) === 'Alumni' ? 'selected' : '' }}>Alumni</option>
                         </select>
                         @error('status')
+                        <span class="text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Tahun kelulusan -->
+                    <div>
+                        <label for="graduation_year" class="text-gray-700">Tahun Kelulusan</label>
+                        <input type="number" 
+                               name="graduation_year" 
+                               value="{{ old('graduation_year', $student->graduation_year) }}" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100 placeholder:italic" 
+                               placeholder="Tahun Kelulusan" maxlength="16">
+                        @error('graduation_year')
                         <span class="text-sm text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
@@ -192,6 +195,14 @@
                             <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
+                    </div>
+
+                    <!-- Agama -->
+                    <div>
+                        <input type="hidden" 
+                               name="religion" 
+                               class="w-full mt-2 px-3 border rounded-md bg-gray-100" 
+                               readonly>
                     </div>
 
                     

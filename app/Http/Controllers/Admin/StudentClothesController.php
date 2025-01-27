@@ -84,10 +84,21 @@ class StudentClothesController extends Controller
             'others'     => 'nullable|string|max:255',
         ]);
 
-        $studentClothes = StudentClothes::create($validatedData);
+        StudentClothes::create($validatedData);
 
-        return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Disimpan!');
+         // Ambil student_id dengan metode yang sesuai
+        $studentId = $request->input('student_id')[0]; 
+
+        // Ambil status santri untuk menentukan halaman tujuan
+        $student = Student::findOrFail($studentId);
+
+        if ($student->status === 'Alumni') {
+            return redirect()->route('admin.students.alumni')->with('success', 'Data pakaian berhasil disimpan untuk Alumni!');
+        }
+
+        return redirect()->route('admin.students.index')->with('success', 'Data pakaian berhasil disimpan!');
     }
+
 
     /**
      * Display the specified resource.

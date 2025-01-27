@@ -177,7 +177,14 @@ class StudentController extends Controller
             'guardian_id' => $validatedData['guardian_id'] ?? null,
         ]);
 
-        return redirect()->route('admin.students.index')->with('success', 'Data Berhasil Diperbarui!');
+        // Redirect berdasarkan status
+        if ($validatedData['status'] === 'Alumni') {
+            return redirect()->route('admin.students.alumni')
+                ->with('success', 'Santri telah diperbarui sebagai Alumni!');
+        }
+
+        return redirect()->route('admin.students.index')
+            ->with('success', 'Data Santri berhasil diperbarui!');
     }
 
     

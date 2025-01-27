@@ -73,7 +73,7 @@ class StudentHealthRecordController extends Controller
     public function storee(Request $request)
     {
         $request->validate([
-            'student_id' => 'required|exists:students,id|unique:student_health_records,student_id',
+            'student_id' => 'required|exists:students,id',
             'blood_type' => 'nullable|string|max:3',
             'medical_history' => 'nullable|string',
             'allergies' => 'nullable|string',
