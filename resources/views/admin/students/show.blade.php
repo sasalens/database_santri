@@ -61,6 +61,7 @@
 
                     <x-view-detail label="Kelas" value="{{ $student->education->class ?? '_' }} - {{ $student->education->education_level ?? '_' }}"></x-view-detail>
                     <x-view-detail label="Tahun Masuk" value="{{ $student->education->entry_year ?? '_' }}"></x-view-detail>
+                    <x-view-detail label="Tahun Lulus" value="{{ $student->education->graduation_year ?? '_' }}"></x-view-detail>
                     <x-view-detail label="Status" value="{{ $student->education->graduation_status ?? '_' }}"></x-view-detail>
                 </div>
 

@@ -49,6 +49,24 @@ class Student extends Model
         return $this->hasOne(StudentEducation::class, 'student_id');
     }
 
+    // Event untuk mengupdate status pendidikan saat santri menjadi alumni
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($student) {
+            if ($student->isDirty('status') && $student->status === 'Alumni') {
+                // Pastikan graduation_year sudah diisi secara manual sebelum mengupdate status pendidikan
+                if ($student->graduation_year) {
+                    $student->education()->update([
+                        'graduation_status' => 'Lulus',
+                        'graduation_year' => $student->graduation_year,
+                    ]);
+                }
+            }
+        });
+    }
+
     // Relasi 1-to-1 ke hafalan
     public function memorization()
     {
